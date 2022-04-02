@@ -1,5 +1,5 @@
 site_name: WG Know How
-site_url: 
+site_url:
 site_author: Florian Schweiger
 
 repo_name: KnowHow
@@ -75,10 +75,10 @@ markdown_extensions:
       custom_checkbox: true
 
 nav:
-  - Foreword: foreword.md
+  - Foreword: index.md
   - Contents:
     - Unit Testing: UNIT_Tests/python.md
   - References:
-    - Annex: 
+    - Annex:
       - annex/how_to_contribute.md
-    
+      - annex/getting_started.md
