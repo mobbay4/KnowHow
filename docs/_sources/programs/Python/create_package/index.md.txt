@@ -1,8 +1,0 @@
-# Create Package
-
-```{toctree}
-:maxdepth: 3
-:caption: Create Package
-
-create_package
-```

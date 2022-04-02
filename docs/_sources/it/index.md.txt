@@ -1,8 +1,0 @@
-# IT
-
-```{toctree}
-:maxdepth: 3
-:caption: IT
-
-data_management
-```

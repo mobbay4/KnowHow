@@ -1,8 +1,0 @@
-# VSCode
-
-```{toctree}
-:maxdepth: 3
-:caption: VSCode
-
-drawio_extension
-```

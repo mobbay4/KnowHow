@@ -1,9 +1,0 @@
-# Commits
-
-```{toctree}
-:maxdepth: 3
-:caption: Commits
-
-conventions_for_SC
-Commit_railigent_docu
-```
