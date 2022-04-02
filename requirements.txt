@@ -1,0 +1,11 @@
+# packages for Sphinx documentation
+matplotlib
+myst_parser                  # to import .md in sphinx docu
+sphinx
+sphinx-book-theme            # sphinx theme
+sphinx-copybutton            # to add a copybutton to code blocks
+sphinx-plotly-directive      # package for documentation plots with plotly
+sphinxcontrib-mermaid        # to render mermaid diagrams
+
+# package for git-hooks
+pre-commit
