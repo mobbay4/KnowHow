@@ -481,16 +481,19 @@
 <h1 id="getting-started">Getting Started</h1>
 <p>The following explains how to set up the local environment to write and deploy the documentation.</p>
 <h2 id="environment-setup">Environment Setup</h2>
-<p>First of all we need to clone the repository structure locally. For the moment it is intendet to have following local folder structure:</p>
-<p>!!!
-    - Know_How
-        - master # contains clone of master branch
-        - gh-pages # contains clone of gh-pages branch</p>
-<p>We want to folders for the two branches since if we want to deploy our documentation on GitLab we need to build it locally and push it to the gh-pages branch. The documentation deployment is explained in the next section.</p>
-<p>So to introduce this local environment we perform following steps:</p>
+<p>First of all, we need to clone the repository structure locally. For the moment, it is intended to have the following <strong>local folder structure</strong>:</p>
+<ul>
+<li>Know_How<ul>
+<li>master # contains clone of master branch</li>
+<li>gh-pages # contains clone of gh-pages branch</li>
+</ul>
+</li>
+</ul>
+<p>We want folders for the two branches since if we want to deploy our documentation on GitLab, we need to build it locally and push it to the gh-pages branch. The documentation deployment is explained in the next section.</p>
+<p>So to introduce this local environment, we perform <strong>following steps</strong>:</p>
 <ul>
 <li>create a folder <code>Know_How</code></li>
-<li>in latter folder clone the repository twice and rename cloned folders to <code>master</code> and <code>gh-pages</code></li>
+<li>in the latter folder, clone the repository twice and rename cloned folders to <code>master</code> and <code>gh-pages</code></li>
 <li>then move into the <code>gh-pages</code> folder</li>
 <li>execute the command <code>$ git checkout gh-pages</code> for switching to the right branch</li>
 <li>Now we move to the <code>master</code> folder</li>
@@ -500,14 +503,14 @@
 <li>install the requirements with <code>$ pip install -r requirements.txt</code></li>
 <li>configure the git hooks with <code>$ pre-commit install</code></li>
 </ul>
-<p>Now the basic setup is done. The git-hooks are executed before every commit in the master branch. So it is recommended to commit bofore deploying the documentation. One can apply the git-hooks on all repository files with:</p>
+<p>Now the basic setup is done. The git-hooks are executed before every commit in the master branch. So it is recommended to commit before deploying the documentation. One can apply the git-hooks on all repository files with:</p>
 <ul>
 <li><code>$ pre-commit run --all-files</code></li>
 </ul>
 <h2 id="deploy-the-documentation">Deploy the Documentation</h2>
-<p>To deploy the documentation we need to build and push the static html to the <code>gh-pages</code> branch. With above described setup this process is (at least a bit simlified) by the <code>deploy.sh</code> script. Just move to the <code>gh-pages</code> folder and execute <code>bash deploy.sh</code>. This automatically builds, moves, pushes the documentation to the correct branch.</p>
+<p>We need to build and push the static HTML to the <code>gh-pages</code> branch to deploy the documentation. With the above described set up this process is (at least a bit simplified) by the <code>deploy.sh</code> script. Move to the <code>gh-pages</code> folder and execute <code>bash deploy.sh</code>. This automatically builds, moves, and pushes the documentation to the correct branch.</p>
 <h2 id="add-content-to-the-documentation">Add Content to the Documentation</h2>
-<p>The add content one has to modify the files in the <code>/docs</code> folder in the master branch. Just add to existing files or create new ones add your content. To add new files one has to  additionally adjust the <code>nav</code> section in the <code>mkdocs.yml</code> file.</p>
+<p>The add content, one has to modify the files in the <code>/docs</code> folder in the master branch. Just add to existing files or create new ones and add your content. To add new files, one must also adjust the <code>nav</code> section in the <code>mkdocs.yml</code> file.</p>
 
               
             </article>
