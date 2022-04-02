@@ -393,9 +393,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="getting_started.html" class="md-nav__link md-nav__link--active">
         Getting Started
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    Environment Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-the-documentation" class="md-nav__link">
+    Deploy the Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-content-to-the-documentation" class="md-nav__link">
+    Add Content to the Documentation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -434,6 +479,35 @@
 
 
 <h1 id="getting-started">Getting Started</h1>
+<p>The following explains how to set up the local environment to write and deploy the documentation.</p>
+<h2 id="environment-setup">Environment Setup</h2>
+<p>First of all we need to clone the repository structure locally. For the moment it is intendet to have following local folder structure:</p>
+<p>!!!
+    - Know_How
+        - master # contains clone of master branch
+        - gh-pages # contains clone of gh-pages branch</p>
+<p>We want to folders for the two branches since if we want to deploy our documentation on GitLab we need to build it locally and push it to the gh-pages branch. The documentation deployment is explained in the next section.</p>
+<p>So to introduce this local environment we perform following steps:</p>
+<ul>
+<li>create a folder <code>Know_How</code></li>
+<li>in latter folder clone the repository twice and rename cloned folders to <code>master</code> and <code>gh-pages</code></li>
+<li>then move into the <code>gh-pages</code> folder</li>
+<li>execute the command <code>$ git checkout gh-pages</code> for switching to the right branch</li>
+<li>Now we move to the <code>master</code> folder</li>
+<li>execute <code>pip install virtualenv</code></li>
+<li>create an virtual environment with <code>$ virtualenv venv</code> (may <code>$ python -m virtualenv venv</code>)</li>
+<li>activate the environment with <code>$ source venv/bin/activate</code></li>
+<li>install the requirements with <code>$ pip install -r requirements.txt</code></li>
+<li>configure the git hooks with <code>$ pre-commit install</code></li>
+</ul>
+<p>Now the basic setup is done. The git-hooks are executed before every commit in the master branch. So it is recommended to commit bofore deploying the documentation. One can apply the git-hooks on all repository files with:</p>
+<ul>
+<li><code>$ pre-commit run --all-files</code></li>
+</ul>
+<h2 id="deploy-the-documentation">Deploy the Documentation</h2>
+<p>To deploy the documentation we need to build and push the static html to the <code>gh-pages</code> branch. With above described setup this process is (at least a bit simlified) by the <code>deploy.sh</code> script. Just move to the <code>gh-pages</code> folder and execute <code>bash deploy.sh</code>. This automatically builds, moves, pushes the documentation to the correct branch.</p>
+<h2 id="add-content-to-the-documentation">Add Content to the Documentation</h2>
+<p>The add content one has to modify the files in the <code>/docs</code> folder in the master branch. Just add to existing files or create new ones add your content. To add new files one has to  additionally adjust the <code>nav</code> section in the <code>mkdocs.yml</code> file.</p>
 
               
             </article>
