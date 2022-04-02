@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+# Getting Started
 
-You can use the [editor on GitHub](https://github.com/mobbay4/Know_How/edit/gh-pages/README.md) to maintain and preview the content for your website in Markdown files.
+The following explains how to set up the local environment to write and deploy the documentation.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Environment Setup
 
-### Markdown
+First of all, we need to clone the repository structure locally. For the moment, it is intended to have the following **local folder structure**:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+Know_How
+└─── master   # folder containing clone of master branch
+└─── gh-pages # folder containing clone of gh-pages branch
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+We want folders for the two branches since if we want to deploy our documentation on GitLab, we need to build it locally and push it to the gh-pages branch. The documentation deployment is explained in the next section.
 
-### Jekyll Themes
+So to introduce this local environment, we perform **following steps**:
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mobbay4/Know_How/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- create a folder `Know_How`
+- in the latter folder, clone the repository twice and rename cloned folders to `master` and `gh-pages`
+- then move into the `gh-pages` folder
+  - execute the command `$ git checkout gh-pages` for switching to the right branch
+- Now we move to the `master` folder
+  - execute `pip install virtualenv`
+  - create an virtual environment with `$ virtualenv venv` (may `$ python -m virtualenv venv`)
+  - activate the environment with `$ source venv/bin/activate`
+  - install the requirements with `$ pip install -r requirements.txt`
+  - configure the git hooks with `$ pre-commit install`
 
-### Support or Contact
+Now the basic setup is done. The git-hooks are executed before every commit in the master branch. So it is recommended to commit before deploying the documentation. One can apply the git-hooks on all repository files with:
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- `$ pre-commit run --all-files`
+
+## Deploy the Documentation
+
+We need to build and push the static HTML to the `gh-pages` branch to deploy the documentation. With the above described set up this process is (at least a bit simplified) by the `deploy.sh` script. Move to the `gh-pages` folder and execute `bash deploy.sh`. This automatically builds, moves, and pushes the documentation to the correct branch.
+
+## Add Content to the Documentation
+
+The add content, one has to modify the files in the `/docs` folder in the master branch. Just add to existing files or create new ones and add your content. To add new files, one must also adjust the `nav` section in the `mkdocs.yml` file.
