@@ -1,10 +1,10 @@
 #!/bin/bash
-cd ../master/docs/
-make html
-cd ../../gh-pages
+cd ../master
+source venv/bin/activate
+mkdocs build 
+cd ../gh-pages
 rm -rf ./docs/*
-cp -r ../master/docs/_build/html/* ./docs/
-cp -r ../master/docs/_build/doctrees .
+cp -r ../master/site/* ./docs
 git add .
 git commit -am "Update documentation"
 git push
