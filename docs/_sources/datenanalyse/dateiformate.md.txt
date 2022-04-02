@@ -1,0 +1,29 @@
+# Dateiformate
+
+## parquet
+
+## HDF5
+
+[HDF5: Learn HDF5]
+
+## Dateiforamte in Python
+
+[Kapitel im Abschnitt Python][md_py_data_fileformat]
+
+## Dateiformate in Matlab anwenden
+
+Noch keine separates Kapitel/Dokument zu Matlab erstellt.
+Im Folgenden ein paar Informationen.
+
+[HDF5: Import to Matlab]
+
+### mat-files
+
+Version 7.3 MAT-files use an HDF5 based format that requires some overhead storage to describe the contents of the file. For cell arrays, structure arrays, or other containers that can store heterogeneous data types, Version 7.3 MAT-files are sometimes larger than Version 7 MAT-files.
+
+See [HDF5: Matlab mat Foramt].
+
+[md_py_data_fileformat]: ../programs/Python/data_fileformat.md
+[HDF5: Learn HDF5]: https://portal.hdfgroup.org/display/HDF5/Learning+HDF5
+[HDF5: Import to Matlab]: https://de.mathworks.com/help/matlab/import_export/importing-hierarchical-data-format-hdf5-files.html
+[HDF5: Matlab mat Foramt]: https://de.mathworks.com/help/matlab/import_export/mat-file-versions.html

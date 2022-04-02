@@ -1,0 +1,78 @@
+# General hints
+
+## SSH Agent
+
+One can secure his SSH keys and configure an authentication agent so that you won't have to reenter your passphrase every time you use your SSH keys.
+This [tutorial explains how to configure the SSH-Agent].
+
+## Git Clone bash scripts
+
+One can create `.sh`-scripts which you can use to clone several repositories at once, or whole group folder structures at once. Therefore, one creates a shell script like this:
+
+``` Bash
+echo "----------------------------------------------------"
+echo "start cloning LMC Messtechnik group into current folder"
+echo "----------------------------------------------------"
+
+mkdir LMC_Messtechnik
+cd LMC_Messtechnik
+# Famos_basic
+git clone git@code.siemens.com:lmc_messtechnik/famos_basic.git
+# Messmittelverwaltung
+git clone git@code.siemens.com:lmc_messtechnik/messmittelverwaltung.git
+# RollinLok_Speicher
+git clone git@code.siemens.com:lmc_messtechnik/rollinlok_speicher.git
+# LMC_Messtechnik_Website
+git clone git@code.siemens.com:lmc_messtechnik/lmc_messtechnik_website.git
+
+mkdir Famos
+cd Famos
+# Blueprint-FAMOS-Repository
+git clone git@code.siemens.com:lmc_messtechnik/famos/blueprint-famos-repository.git
+# Famos_parser
+git clone git@code.siemens.com:lmc_messtechnik/famos/build_docs.git
+
+cd ..
+
+mkdir EN_LM_SC
+cd EN_LM_SC
+# PR1467_Schienenrauemer
+git clone git@code.siemens.com:lmc_messtechnik/en_lm_sc/pr1467_schienenrauemer.git
+
+echo "----------------------------------------------------"
+echo "finished cloning LMC Messtechnik"
+echo "----------------------------------------------------"
+```
+
+Note that its recomended to configure your [SSH Agent](#ssh-agent) first because otherwise one would have to insert the password for every clone command. You can execute the file in the Git-Bash using the following command:
+
+``` Bash
+bash name_of_git_clone_script.sh
+```
+
+## Git Pull for multiple repositories
+
+It would be helpful to have a possibility to execute `git pull` on multiple repositories at once. For us, it is essential to manage GitLab groups with several subfolder levels. We are restricted to this structure since we want to manage all repositories related to one topic in a single group. Therefore, little research was done to gain knowledge of what are possible options to realize this, presented in the following:
+
+Sadly, no straightforward and easy-to-use method fits our requirements. All possible realizations require either some work on introducing them or workarounds that may introduce potential for bugs. So the two central ideas are:
+
+### Introducing a bash alias ([Tutorial to multipull alias])
+
+A user can define her own bash commands for the bash terminal in a particular profile file. So in our case, the idea is to build a `multipull`-alias that automatically find git repositories and pulls them. So, on the one hand, this somehow fits our requirements, but at least in the tutorial there was a restriction on only one depth level in the folder structure, which is unhandy for our purposes of GitLab groups and would bring more confusion than help. Later restriction has to be solved to use this method!
+
+To conclude, this method is precisely the solution we want in the first hand. Nevertheless, the restriction on only one folder depth level is a Problem. Also, it is not so easy to introduce since every developer would have to configure the bash script by himself. That would bring much work to help people with this command. Nevertheless, as for GitAgend, there is no strict necessity for a developer to use it. One can use it by oneself to fastly pull the individual subfolders, which could also be solved, may even more efficiently, with a `.sh` script. To get started with git aliases for multipulls, please look at the [Tutorial to multipull alias].
+
+### Using git submodules ([Tutorial to git submodules])
+
+Git also brings its own tool to manage multiple repositories at once. The `git submodules` feature enables a user to apply a command for several `submodules`, i.e., the `git pull` command. To explain the concept a bit, one has a management repository where the submodules are added, and after that, one can use the `submodules` features. So this is the first difference to our structure but may not to limit. Since one could add a management repository to the GitLab group and add the `submodules` to it, one can also use it to clone a bulk of repositories. A short description on the `git clone` feature you can find [here].
+
+To conclude, the `submodules` feature has some very appealing advantages like being git-native and therefore supporting every git command. Because of the latter, one can also, for example, add a branch to every submodule. However, it is unclear if we can build a multi-folder level structure to preserve GitLab Group folder structure locally to apply it to our use-case. Also, the original intention for `submodules` is to handle some separate repositories related to a particular topic in one place, not to manage whole GitLab groups with it. To get started, please look at the [Tutorial to git submodules].
+
+## Overall conclusion
+
+So there is no clear solution for this task. A `bash alias` would be too much work to introduce for each user, and the `git submodules` are not intended to handle GitLab groups. However, `git submodules` could potentially solve the problem. To get sure about this, one would have to do more profound research or try it out.
+
+[here]:https://stackoverflow.com/questions/29099456/how-to-clone-all-projects-of-a-group-at-once-in-gitlab
+[Tutorial to git submodules]: https://dev.to/rmpato/a-new-use-case-for-git-submodules-3do1
+[Tutorial to multipull alias]: https://dev.to/rmpato/git-pull-multiple-repositories-at-once-4l68
+[tutorial explains how to configure the SSH-Agent]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows

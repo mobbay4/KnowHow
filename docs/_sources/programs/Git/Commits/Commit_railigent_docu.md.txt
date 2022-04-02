@@ -1,0 +1,107 @@
+# Contributing
+
+We welcome contributions in several forms, e.g.
+
+* Documenting
+* Testing
+* Coding
+* etc.
+
+## Guidelines
+
+### Workflow
+
+You can contribute easily by creating a [new branch](https://code.siemens.com/railigent/docs/branches/new) from the master branch following a [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). Work in this branch until want to merge it back in the master branch with a [new merge request](https://code.siemens.com/railigent/docs/merge_requests/new). Make sure that the gitlab-ci pipeline for your merge requests succeed. Assign the merge request to `@lars.luehr` for review.
+
+Gitlab-ci will check the generated HTML for broken links, images and markdown errors in the `test` stage for you. If a job fails check its log for the errors.
+
+To make developing markdown documentation easier you can install the `markdownlint` plugin for VSCode with the following settings. The plugins highlights markdown formatting errors. See the [.markdownlint.json][./.markdownlint.json] file for its configuration.
+
+Improvements are always welcome! Feel free to log a bug, write a suggestion or
+contribute code via merge request. All details are listed in our contribution
+guide.
+
+### Local Usage
+
+If you want to create the documentation locally create a virtual python environment and
+install the dependencies.
+
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install --index-url https://devops.bt.siemens.com/artifactory/api/pypi/pypi-remote/simple -r requirements.txt
+```
+
+* `mkdocs serve` allows you to browse the docs at <http://127.0.0.1:8000>
+* `mkdocs build --strict` builds the docs and checks all internal links
+
+#### Local PlantUML server
+
+Start a local plantuml server with docker:
+
+```bash
+docker run -d -p 8080:8080 plantuml/plantuml-server:jetty
+```
+
+You now have a PlantUML server at localhost: <http://localhost:8080/>
+
+#### Local Draw.io server
+
+Start a local draw.io server with docker:
+
+```bash
+docker run -it --rm --name="draw" -p 8080:8080 -p 8443:8443 jgraph/drawio
+```
+
+You now have a Draw.io server at localhost: <http://localhost:8080/?offline=1&https=0>
+
+### Git Commit
+
+The cardinal rule for creating good commits is to ensure there is only one
+"logical change" per commit. There are many reasons why this is an important
+rule:
+
+* The smaller the amount of code being changed, the quicker & easier it is to
+    review & identify potential flaws.
+* If a change is found to be flawed later, it may be necessary to revert the
+    broken commit. This is much easier to do if there are not other unrelated code
+    changes entangled with the original commit.
+* When troubleshooting problems using Git's bisect capability, small well
+    defined changes will aid in isolating exactly where the code problem was
+    introduced.
+* When browsing history using Git annotate/blame, small well defined changes
+    also aid in isolating exactly where & why a piece of code came from.
+
+### Git Commit Conventions
+
+We use git commit as per [Conventional Changelog](https://github.com/ajoslin/conventional-changelog).
+Use the scope to define the area of your change.
+
+```text
+<type>(<scope>): <subject>
+```
+
+Example:
+
+``` text
+docs(contributing): add commit message guidelines
+docs(python): added install descriptions
+docs(jenkins): fixed broken links
+docs(docker): removed old information
+```
+
+Allowed types:
+
+* **feat**: A new feature
+* **fix**: A bug fix
+* **docs**: Documentation only changes
+* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+* **refactor**: A code change that neither fixes a bug nor adds a feature
+* **perf**: A code change that improves performance
+* **test**: Adding missing tests
+* **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
+
+Scope recommendation:
+
+Use the filename without `.md` where you changed something for the scope of your changes.

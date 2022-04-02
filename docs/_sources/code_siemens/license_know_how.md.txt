@@ -1,0 +1,24 @@
+# License Know How
+
+Für Repositories on Code Siemens sollte eine Lizenz vergeben werden.
+
+## Inner Source Repositories
+
+Für Inner Source muss eine Lizenz vergeben werden.
+Es gibt Vorlagen von Code Siemens.
+
+```{important}
+Es muss eine Vorlage für die Verwendung in unserer Abteilung ausgewählt werden.
+```
+
+## Private Repositories
+
+Die private Repositories der Abteilung sind nicht für das Verteilen von Information außerhalb der Abteilung gedacht.
+
+Trotzdem sollen sie mit einer Lizenz versehen werden.
+
+Eine Möglichkeit wäre: Die Information darf nur nach Rückfrage genutzt werden.
+
+```{important}
+Es muss eine Vorlage für die Verwendung in unserer Abteilung ausgewählt werden.
+```

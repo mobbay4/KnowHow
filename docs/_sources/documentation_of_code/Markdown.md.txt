@@ -1,0 +1,101 @@
+# Markdown
+
+In this section the information on the "standard" Markdown syntax is noted down.
+
+For MyST see section [MySt](./MyST.md)
+
+To check for new information visit [Railigent Documentation][railigent_docs_markdown] (Martin has access)
+
+## Some hints
+
+### Jumpmarks
+
+- Marks for example headings. In our case Jumpmark = `#`.
+  There are some Markdown interpreter don`t use Jumpmarks.
+
+### Links
+
+Its recomended to define a Link at the end of the Markdown-document. This keeps your document readable and its clear where to find the Links.
+
+#### network drives
+
+Refer to network drives: `file://///ad001.siemens.net/dfs001/File`
+
+#### to markdown documents
+
+Links to line of markdown code (only for GitLab): Add a #L and the line number at the end of the Link to the Markdown file. Example: `.md#L5`
+
+### Create a copy button
+
+  With copy button we mean here the button in the final sphinx documentation that allows to copy everything of in a given code block with one click.
+    - Sphinx: copy button
+
+### Embed HTML file in markdown file
+
+To do so one can just add the following line somewhere in the Markdown file and adjust the file-path:
+
+```html
+<iframe src="path/to/filename.html" height="1000px" width="100%></iframe>
+
+```
+
+With this you can for example add interactive (plotly) plots to your documentation. See also the [corresponding stackoverflow page][embed html stackoverflow page].
+
+## Show Markdown code in rendered file
+
+For short texts use the `` for code-highlighting to show the Markdown code. Example: `[test-picture](./artwork/test_picture.png)`.
+
+The following is not officially documented. The syntax was extracted from the source files of [MyST website].
+If you want to show markdown blocks in the markdown block, add a `.
+
+`````md
+````md
+```md
+```
+````
+`````
+
+## Math
+
+use the $ sign to surround Latex Formulas.
+For example:
+
+`$x^n + y^n = z^n$`
+
+renders to:
+
+$x^n + y^n = z^n$
+
+## markdown conventions for SC
+
+This Chapter establishes the markdown conventions for SC.
+
+### links
+
+Place links at the end of the markdown document.
+The links are sorted alphabetically by the reference names.
+
+See following example:
+
+```md
+Here's [a link to something else][another_place].
+Here's [yet another link][another_link].
+And now back to [the first link][another_place].
+
+[another_link]: www.google.com
+[another_place]: www.github.com
+```
+
+#### links to markdown documents
+
+The reference of the link starts with `md_`, see th following example:
+
+```md
+Here's [a link to a markdown file][md_another_md_file]
+
+[md_another_md_file]: ./another_file.md
+```
+
+[MyST website]: https://myst-parser.readthedocs.io/en/latest/index.html
+[railigent_docs_markdown]: https://railigent.code.siemens.io/docs/development/docs/markdown.html
+[embed html stackoverflow page]: https://stackoverflow.com/questions/36797384/embed-external-html-file-using-iframe-in-sphinx

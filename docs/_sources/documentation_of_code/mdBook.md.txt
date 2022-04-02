@@ -1,0 +1,5 @@
+# mdBook
+
+To use mdBook for documentation one can use the [mdBook-Blueprint-Repository].
+
+[mdBook-Blueprint-Repository]: https://code.siemens.com/sibas-forge/sites/mdbook

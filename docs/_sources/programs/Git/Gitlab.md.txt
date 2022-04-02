@@ -1,0 +1,81 @@
+# Gitlab
+
+## permissions and rolls
+
+General information gives the [git-permissions] documentation site.
+
+### personal notes
+
+If there is a structure with groups, subgroups, and repositories, for every member in the highest level group the permissions will be copied for the subgroups and repositories.
+For a specific subgroup or repository higher permissions as in the highest level group can be set.
+Therefore navigate to the subgroup or repository the member needs higher permissions. ***In the invite sections of the member-management invite the member again with the higher permissions.***
+
+[git-permissions]: https://docs.gitlab.com/ee/user/permissions.html
+
+## Move Repositories
+
+**Note**: Only the code and commits are moved. Other parts of the repository are not moved. The following List shows elements that mus be moved "manually":
+
+- [Issues](#move-issues)
+- Packages: No research if they can be moved yet
+- Result of Pipelines: No research if they can be moved yet
+
+Move Repositories with the functionality "New Project" "Import Project"
+
+The Repository that is imported must be public. If the Repository is contained in a group the repository can only have the visibility level of the group, or lower visibility. So first make the group public and then the repository.
+
+***Don`t forget to reset the visibility of the group after the repository is moved!***
+
+### Move Issues
+
+[Gitlab Documentation: Move Issues]
+
+Open the Issue you want to move. At the right boarder menu the last point ist move issue.
+
+## Manage TODOs
+
+Use GitLab Issues to manage TODOs. For large changes, the draft of what to do can get also large.
+In this case, it is smarter to use the Issue only as a reminder.
+The Issue has a link to the file the draft is developed. So the Issue is just a pointer.
+
+## Labels
+
+- [Gitlab Documentation: Labels]
+- [Gitlab Handbook: Labels]
+- [Gitlab Blog: Labels]
+
+Welche Labels sollen in einem Projekt am besten verwendet werden? Auf diese Frage wurde im Internet nicht direkt eine Antwort gefunden.
+
+Deshalb unser Ansatz: Mit den gefunden Empfehlungen starten und die Label Liste selber erweiter/verkürzten.
+
+- Priority: High
+- Priority: Low
+- Type: bug
+- Type: feature
+- Effort: minutes
+- Effort: hours
+
+| Label                  | Description                                                                                                                                                                              | Applied Automatically? |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| Blocked                | Indicates a request should not be merged yet because it is blocked by an external entity. This could be waiting on another cookbook update or service needs to be updated/deployed.      | N                      |
+| Blocked by Events      | This MR should not be merged because it is waiting for one or more events to complete. Sometimes potentially impacting changes don't get pushed out if we have an active sporting event. | N                      |
+| Blocked by Maintenance | This MR should not be merged until site maintenance is complete.                                                                                                                         | N                      |
+| Dogfooding             | This MR should not be merged, but is being internally tested. This is usually used for our custom Chef Dev Environment.                                                                  | N                      |
+| Major                  | This is a major and breaking change as defined by SemVer. This code should be reviewed very carefully to understand the scope of impact.                                                 | Y                      |
+| Minor                  | This is a minor change as defined by SemVer. It adds a new feature to the API.                                                                                                           | Y                      |
+| Patch                  | This is a fix as defined by SemVer.                                                                                                                                                      | Y                      |
+| Needs Changes          | Someone has reviewed the MR and the code needs to be updated. Reviewers comments are sufficient to update.                                                                               | N                      |
+| Needs Discussion       | Someone has reviewed the MR and a discussion is necessary to get this MR back on track.                                                                                                  | N                      |
+| Needs Review           | This is a new MR and no one has looked at it yet.                                                                                                                                        | Y                      |
+| Ready to Deploy        | This MR has been reviewed by the correct number of individuals and is ready to be deployed.                                                                                              | N                      |
+| Priority: High         | aaa                                                                                                                                                                                      | N                      |
+| Priority: Low          | aaa                                                                                                                                                                                      | N                      |
+| Type: bug              | aaa                                                                                                                                                                                      | N                      |
+| Type: feature          | aaa                                                                                                                                                                                      | N                      |
+| Effort: minutes        | aaa                                                                                                                                                                                      | N                      |
+| Effort: hours          | aaa                                                                                                                                                                                      | N                      |
+
+[Gitlab Documentation: Move Issues]: https://about.gitlab.com/blog/2016/04/20/feature-highlight-move-issues/
+[Gitlab Documentation: Labels]:https://docs.gitlab.com/ee/user/project/labels.html
+[Gitlab Handbook: Labels]: https://about.gitlab.com/handbook/marketing/project-management-guidelines/labels/
+[Gitlab Blog: Labels]: https://about.gitlab.com/blog/2016/08/17/using-gitlab-labels/

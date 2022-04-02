@@ -1,0 +1,18 @@
+# Test driven Development
+
+Test-driven Development (TDD) is a coding design strategy based on the idea that one first writes a test before implementing the code. TDD has the advantage that the developer gets feedback for the API of his function as early as possible.
+
+One first writes the minor test that fulfills all requirements. The next one starts to implement the required code until the test passes. Finally, one refactors the written test and the implemented code and cleans everything up.
+
+So one can group the development process in **three phases**:
+
+- Phase 1: Write a test that fulfills requirements
+- Phase 2: Implement code until the test passes
+- Phase 3: Refactor the code and the test. The goal is to make the software simple, free of redundancies, and understandable. (Clean Up)
+
+**Test-driven Development has several advantages**:
+
+- no untested code
+- clean/testable software architecture
+- no/fewer redundancies because of refactoring
+- concentration on the essential aspects

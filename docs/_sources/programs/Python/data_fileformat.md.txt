@@ -1,0 +1,48 @@
+# Data file format
+
+## pickle
+
+To store a python object as it is, use the pickle library.
+
+## HDF5
+
+To use HDF5 files, third-party libraries are needed.
+
+TODO: Add what library deals best, after gaining some experience.
+
+```{attention}
+pytables benötigt zusätzliche Packages die sich nicht automatisch installieren.
+Stets die Installationsanweisung lesen.
+```
+
+Libraries that can be used:
+
+- [HDF5: pytable]
+- [HDF5: python HDF5 ohne pickle]
+
+### read mat-files
+
+[HDF5: read mat files]
+
+## parquet
+
+To use parquet files, third-party libraries are needed.
+
+Libraries that can be used:
+
+- [parquet: pyarrow]
+- [parquet: fastparquet]
+
+## mat-files
+
+Scipy can read and write mat-files, see [mat: scipy].
+2021.12.16: The export worked well.
+
+This file i/o is probably for "smaller" files.
+
+[HDF5: python HDF5 ohne pickle]: https://pypi.org/project/hdf5storage/
+[HDF5: pytable]: https://www.pytables.org/usersguide/introduction.html
+[HDF5: read mat files]: https://pythonhosted.org/hdf5storage/information.html#matlab-mat-v7-3-file-support
+[parquet: pyarrow]: https://arrow.apache.org/docs/python/getstarted.html
+[parquet: fastparquet]: https://fastparquet.readthedocs.io/en/latest/
+[mat: scipy]: https://scipy.github.io/devdocs/reference/generated/scipy.io.savemat.html#scipy.io.savemat

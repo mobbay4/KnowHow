@@ -1,0 +1,225 @@
+# Pytest Overview
+
+There are many options one can use while testing Python packages with Pytest. This overview will only mention the primary cases. Also, this is just comprehension of this [repository Pytest tutorial]. For a detailed understanding, its worth a look!
+
+## Introduction
+
+Tests usually are stored in the `tests` folder. In there, you can save the files containing your Pytest tests. Note that it could be a problem if you name your test file like `test_filename.py`. In my case, it was important to name it other like `filename_test.py`. From My understanding, this comes from the fact that Pytest recognizes the file as a single test in the first case. In consequence, several features of Pytest work not correctly.
+
+After one has defined some tests, you can run the following command to **execute the testing process**.
+
+```shell
+pytest
+```
+
+One can also use:
+
+```shell
+pytest -v # for additional information on the testing process
+pytest -vv # for all possible additional information on the testing
+```
+
+The most simple test one can think of is, for example:
+
+```python
+def test_simple():
+    """
+    This is just a simple test.
+    """
+    a = 1
+    assert a == 1
+```
+
+So there are two basic principles one can learn from this. First, a Pytest test function typically contains a `test_` or a `_test`. Second, you can use the `assert` keyword to check if a specific condition is fulfilled. So if the condition, in this example, the `a==1` returns a `False`, the test fails.
+
+In principle, one could start from here and write your tests. But there are some very nice features Pytest provides that you can use to get a better life.
+
+## General Facts
+
+You can expect error raises to check if the error handling works fine. For this, you can use the following statement:
+
+```Python
+with Pytest.raises(ZeroDivisionError):
+    1/0
+```
+
+Also, if you want to check if a return is approximately equal to a certain number, you can do:
+
+```Python
+assert calculation(3) == pytest.qpprox(0.2)
+```
+
+## Fixtures
+
+Imagen, you have multiple tests and create some example data for every single test. At this point, fixtures come into play. Fixtures are excellent if you want to fulfill a particular task or create data before executing a test.
+
+One creates a fixture by using the `@pytest.fixture` function decorator. To use such a fixture, one hand over the fixture name to a test function where the Fixture should be used. So, for example:
+
+```Python
+@pytest.fixture
+def data():
+    """
+    This Fixture provides some example inputs.
+    """
+    a = {}
+    a["1"]=123
+    a["2"]=500
+    return a
+
+def test_example(data):
+    assert data["1"]==123
+    assert data["2"]==500
+```
+
+Note that the fixture return in the above example is provided via the input name in the test_example-function. You can also hand fixtures over to other Fixtures.
+
+### CleanUp
+
+Often one needs to clean up the environment after executing a particular test. This clean up can be done via two different methods:
+
+The first one can use the `request.addfinalizer`. The `request` is a build Pytest Fixture-like object. You hand it over like a regular Fixture to another Fixture. Then you can hand over a function to the `request.addfinalizer()` function that should be executed at the end of the current test function. The nice thing here is that Pytest guarantees to execute the given cleanup function, even if there occurs some error while testing. An example looks like this:
+
+```Python
+def test_with_safe_cleanup_fixture(safe_fixture):
+    print("\nRunning test_with_safe_cleanup_fixture...")
+    assert True
+
+
+@pytest.fixture
+def safe_fixture(request):
+    """
+    The request can also be used to apply post-test callbacks
+    (these will run even if the Fixture itself fails!)
+    """
+    print("\n(Begin setting up safe_fixture)")
+    request.addfinalizer(safe_cleanup)
+    risky_function()
+
+
+def safe_cleanup():
+    print("\n(Cleaning up after safe_fixture!)")
+
+
+def risky_function():
+    # # Uncomment to simulate a failure during Fixture setup!
+    # raise Exception("Whoops, I guess that risky function didn't work...")
+    print("   (Risky Function: Worth it!)")
+```
+
+The second one can use a `yield`. This method is not the cleanest. It works for normal, but if there is an error in the Fixture above the cleanup area. The cleanup could fail. It could look like:
+
+```Python
+@pytest.fixture
+def data():
+    """
+    This Fixture provides some example inputs.
+    """
+    a = {}
+    a["1"]=123
+    a["2"]=500
+    yield a
+
+    # Code that should be executed in the end!
+    del(a)
+
+```
+
+### Autouse
+
+One can activate the `autouse` feature of Fixtures to execute it before every test function without explicitly mentioning it in the test function. Example
+
+```Python
+@pytest.fixture(autouse=True)
+def example_fixture():
+    assert True
+```
+
+### Parameters
+
+One can also define parameters for a fixture or a test. The idea is that you can call a single test multiple times with different input parameters where each call of this test is identified with its parameters. Such that you can quickly identify afterward which inputs caused the error. Examples:
+
+For fixtures:
+
+```Python
+def test_parameterization(letter):
+    print("\n   Running test_parameterization with {}".format(letter))
+
+
+def test_modes(mode):
+    print("\n   Running test_modes with {}".format(mode))
+
+
+@pytest.fixture(params=["a", "b", "c", "d", "e"])
+def letter(request):
+    """
+    Fixtures with parameters will run once per param
+    (You can access the current param via the request fixture)
+    """
+    yield request.param
+
+
+@pytest.fixture(params=[1, 2, 3], ids=['foo', 'bar', 'baz'])
+def mode(request):
+    """
+    Fixtures with parameters will run once per param
+    (You can access the current param via the request fixture)
+    """
+    yield request.param
+```
+
+Or directly for Pytest tests:
+
+```Python
+@pytest.mark.parametrize("number", [1, 2, 3, 4, 5])
+def test_numbers(number):
+    """
+    mark can be used to apply "inline" parameterization, without a fixture
+    """
+    print("\nRunning test_numbers with {}".format(number))
+
+
+@pytest.mark.parametrize("x, y", [(1, 1), (1, 2), (2, 2)])
+def test_dimensions(x, y):
+    """
+    mark.parametrize can even unpack tuples into named parameters
+    """
+    print("\nRunning test_coordinates with {}x{}".format(x, y))
+
+@pytest.mark.parametrize("mode", [1, 2, 3], ids=['foo', 'bar', 'baz'])
+def test_modes(mode):
+    """
+    The `ids` kwarg can be used to rename the parameters
+    """
+    print("\nRunning test_modes with {}".format(mode))
+```
+
+### Global Fixtures: conftest.py
+
+The `conftest.py` file contains global `fixtures`. A global Fixture can be used in every test file like a typical Fixture. In the case of double naming Pytest always takes the most local definition of a Fixture. Typically the `conftest.py` file is located on the repository folder level.
+
+## Test Marking
+
+One can mark its test functions with tags. This marking is useful to execute just a specific subset of the tests. For example, one could imagine a mark like:
+
+```Python
+@pytest.mark.thisIsAMarkerName
+def test_example():
+    assert True
+```
+
+Then one can execute this specific test like:
+
+```Shell
+pytest -v -m thisIsAMarkerName
+```
+
+By that, one also can group tests. So one can also select that just a specific subset of tests is executed:
+
+```Python
+@pytest.mark.runtime
+@pytest.mark.parametrize("case",runtime_cases,ids=runtime_ids)
+def test_runtime(case):
+    assert True
+```
+
+[repository Pytest tutorial]:https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/00_empty_test.md

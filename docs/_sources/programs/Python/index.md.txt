@@ -1,0 +1,13 @@
+# Python
+
+```{toctree}
+:maxdepth: 3
+:caption: Python
+
+general
+data_fileformat
+Pytest/index
+create_package/index
+Spyder/index
+plotly
+```

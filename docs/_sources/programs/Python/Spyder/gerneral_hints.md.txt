@@ -1,0 +1,30 @@
+# general hints for spyde IDE
+
+## insallation
+
+recomanded ways (see [documentation][spyder_installation]):
+
+- stand allone installers
+- Anaconda
+
+not recomended:
+
+- pip (worked for me, but as it has no advantage (spyder notebook does not work either see [spyder-notebook](#spyder-notebook)), also depreceated)
+
+## use a venv in spyder
+
+1. The venv you want to use must have package `spyder-kernels` installed (2021.08  spyder-kernels==2.1.*). Otherwise no ipython konsole can be started --> no debugging and variabel viewing is possible.
+2. Change the python.exe Spyder uses. The python.exe of an venv is in the **Scripts** folder, e.g.: `D:/python_venv/DataAnalyse/Scripts/python.exe`
+
+## spyder notebook
+
+A plugin to use jupyter notebooks within spyder, see [documentation]:[spyder_notebook]
+
+2021.11: At the moment it is not possible to use this plugin with the Spyder Standalone installers for Windows and macOS. We're working to make that possible in the future.
+***So don`t use syder notebooks at the moment***
+
+It is also not posible to use the spyder-notebook if spyder and spyder notebook are installed in a venv from pip.
+It makes no difference if spyder is installed on the pc from the windows installer.
+
+[sypder_notebook]: https://docs.spyder-ide.org/current/plugins/notebook.html
+[spyder_installation]: https://docs.spyder-ide.org/current/installation.html#standalone-installers-ref

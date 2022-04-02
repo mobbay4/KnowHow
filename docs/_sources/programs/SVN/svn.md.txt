@@ -1,0 +1,224 @@
+# SVN
+
+See [Website of Apache Subversion][apache_subversion].
+
+For the MKS open Source the use of [Tortoise SVN is recommend][tortoise_svn].
+
+As a good reference for using SVN, refer to the [SVN book][svn_book]. Here is the direkt link to the [index of version1.7][svn_book_verions1p7_index]
+
+## getting started with SVN
+
+In [wie das SVN book zu lesen ist][svn_book_verions1p7_howread] steht folgendes:
+
+*Wahrscheinlich hat Ihr Administrator Subversion bereits aufgesetzt, und Sie möchten nun lernen, wie man den Client benutzt. Falls Sie noch nie ein Versionskontrollsystem benutzt haben, ist Kapitel 1, Grundlegende Konzepte eine unbedingt notwendige Einführung in die Konzepte der Versionskontrolle. Kapitel 2, Grundlegende Benutzung ist eine Führung durch den Subversion-Client.*
+
+## use SVN in command line
+
+2021.10: SVN commands work in PowerShell. I don´t remember that a special SVN-Shell-Extension is installed --> SVN should generally work in shells.
+
+## Comments in properties
+
+ [The information is from a Stackoverflow discussion]][sof_comments_in_prop]
+
+Lines in externals definitions starting with the '#' character are considered comments and are ignored.
+
+## SVN ignore
+
+The information are from [this Stackoverflow diskussion][sof_svn_ignore], and the deeper information is from [this Stackoverflow diskussion][sof_svn_ignore_02].
+
+***You can use svn:ignore. You generally need to tell SVN to apply special properties to the files:***
+
+Strategy Martin Zäch: **Do all ignores in the `svn_ignore.txt`!**
+Explanation: The `propset` command wipes out all pervious settings. So if single files were ignored, an are not effected by the `svn_ignore.txt`, the setting done for the single file is lost. **So do all ignores in the `svn_ignore.txt`!**
+
+### recommended: Use svn_ignore.txt
+
+Create the file `svn_ignore.txt` in the root of the repository.
+Add all files and folders to ignore in this file.
+
+A template for `svn_ignore.txt` is given here:
+
+```{include} ./template_svn_ignore.txt
+:literal:
+```
+
+Then run following command to set the properties for each folder.
+
+```shell
+svn propset svn:ignore -RF /root/svn_ignore.txt . [dot for current dir]
+```
+
+`-R` is for recursive.
+
+```{attention}
+Run the command before every commit to ensure every new generated folder has the ignore properties.
+```
+
+### deprecated: Ignore single file
+
+```shell
+svn propset svn:ignore "*.jpg" .
+```
+
+(Note the dot at the end of the command.)
+***Then commit the code.***
+
+Check that the files are ignored:
+
+```shell
+svn status --no-ignore
+```
+
+### deprecated: Ignore list of files in shell
+
+For multiple files you can add a newline character.
+Type exactly like here with line breaks:
+
+```shell
+svn propset svn:ignore "file1
+file2
+file3" dir1
+```
+
+## Projektarchiv-Wartung
+
+Im [SVN Book][svn_book] gibt es eine [Anleitung für Administratoren][svn_book_admin].
+
+```{hint}
+Für die `svnadmin` Befehle eine Unix-Shell (Git-Shell) verwenden.
+```
+
+### backup Repositories
+
+In der [Anleitung für Administratoren][svn_book_admin] wird auch einen [Abschnitt wie man Backups eines Repositories erstellt][svn_book_admin_backup]
+
+### check the repositories
+
+```shell
+svnadmin verify REPOS_PATH
+```
+
+See [SVN Book description][svn_book_svnadmin_verify]
+
+### dump and load
+
+The following example describes the process.
+
+1. dump the repository
+2. load the dump file to an new repository
+
+```bash
+svnadmin dump my_repo > dumpfile.txt
+svnadmin load my_repo2 < dumpfile.txt
+```
+
+```{hint}
+my_repo (and my_repo2) ist the path of the repository, e.g. T:\01_svn_repo_projects\02_Projects_Locomotive_X4
+
+This also means if my_repo2 is a new repo you must create it before you load the dump-file to it.
+```
+
+```{tip}
+Dump or load on network drives is not recommended, at least not in the home office.
+For a 2.3 GB dump file:
+|                   | network drive | on PC drive |
+|:-----------------:|:-------------:|:-----------:|
+| time for the load |    3 hours    |  5 minutes  |
+
+So copy the repository on your PC. Afterward, copy the repository from your PC back to the network drive.
+```
+
+## corrupt repositories
+
+```{attention}
+Backups of Repositories must be the standard. They prevent data lost and dramatically simplify the repair of corrupt repositories.
+```
+
+### repair with dump and load
+
+```{attention}
+This solution does not use backups of the repository.
+In this solution the **content of the corrupted revisions is lost**
+
+**Without the backup the aim is to save as much information as possible, not to restore the whole information!**
+```
+
+In [this Stack Overflow article][corrupt_repos_01] it is described how to restore a corrupt repository. User bekce gives the most advanced answer.
+
+The following is a manual to repair the repository by dump and load process.
+For general information about the dump and load process see [chapter dump and load](#dump-and-load).
+
+The following example describes the process. In the example the revision 1001 is corrupted.
+
+1. dump the repository
+2. if an error occurs for a revision the dump stops.
+3. restart the dump process with the `--incremental` option, see line 2 of the example (note the `>>`)
+4. load the dump file to an new repository
+
+```bash
+svnadmin dump my_repo > dumpfile.txt
+svnadmin dump --incremental -r1202:HEAD my_repo >> dumpfile.txt
+svnadmin load my_repo2 < dumpfile.txt
+```
+
+In some cases the described dump and load can repair the repository.
+But in the most cases, this process can not fix the corruption. So advanced option are needed.
+
+- The first shot is [disabling the checksum calculation](#disabling-checksum-calculation)
+- If new files were created in the corrupt revision, following revision can not find the files becaus they don`t exist. So the files/folders must be excluded with [svndumpfilter](#exclude-files-or-folders-with-svndumpfilter)
+
+#### advanced option for the dump
+
+##### Disabling checksum calculation
+
+Corruption typically occurs in single files on some revisions. We don't need to discard an entire revision just because some file had a checksum mismatch.
+
+Disabling checksum calculation, by removing lines matching Text-content-md5.
+
+```bash
+dump --incremental -r77:HEAD my_repo | sed '/^Text-content-md5/d' >dumpfile.txt
+```
+
+##### exclude files or folders with svndumpfilter
+
+[Svndumpfilter][svn_dump_filter] filters files and folders in dump-files.
+
+Of interest are the options `include` and `exclude`.
+
+The following example shows how to exclude a folder.
+
+```bash
+cat dumpfile.txt | svndumpfilter exclude folder1/subfolder1/Subfolder2 > dumpfile_filtered.txt
+```
+
+````{note}
+If folders or files are excluded, this is mentioned in the shell output (see example below).
+If there is no output, nothing was droped.
+```bash
+Revision 102 committed as 102.
+
+Dropped 2 nodes:
+   '/Masterarbeit_Adam/S_Funktion/C_SFcn/R2016a/timestwo_bsp.mexw64'
+   '/Masterarbeit_Adam/S_Funktion/C_SFcn/R2016a/timestwo_bsp_2.mexw64'
+```
+````
+
+#### advanced options fot the load
+
+##### properties are corrupt
+
+Sometimes properties are corrupted, then use `--bypas-prop-validation` option in `svnadmin load` command.
+
+[apache_subversion]: https://subversion.apache.org/
+[corrupt_repos_01]: https://stackoverflow.com/questions/8841796/repair-corrupted-svn-repository/8873648#8873648
+[svn_book]: https://svnbook.red-bean.com/
+[svn_book_verions1p7_index]: https://svnbook.red-bean.com/de/1.7/index.html
+[svn_book_verions1p7_howread]: https://svnbook.red-bean.com/de/1.7/svn.preface.howread.html
+[svn_book_admin]: https://svnbook.red-bean.com/de/1.7/svn.reposadmin.maint.html
+[svn_book_admin_backup]: https://svnbook.red-bean.com/de/1.7/svn.reposadmin.maint.html#svn.reposadmin.maint.backup
+[svn_book_svnadmin_verify]: https://svnbook.red-bean.com/de/1.7/svn.ref.svnadmin.c.verify.html
+[sof_comments_in_prop]: https://stackoverflow.com/questions/4242656/does-svn-support-some-sort-of-comments-in-its-properties/8045593
+[sof_svn_ignore]: https://stackoverflow.com/questions/17298668/svn-ignore-like-gitignore
+[sof_svn_ignore_02]: https://stackoverflow.com/questions/1230700/recursively-ignoring-files-in-the-entire-source-tree-in-subversion
+[tortoise_svn]: https://tortoisesvn.net/
+[svn_dump_filter]: https://www.linuxtopia.org/online_books/programming_tool_guides/version_control_with_subversion/svn.reposadmin.maint_3.html

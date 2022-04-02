@@ -1,0 +1,8 @@
+# Datenanalyse
+
+```{toctree}
+:maxdepth: 3
+:caption: Datenanalyse
+
+dateiformate
+```

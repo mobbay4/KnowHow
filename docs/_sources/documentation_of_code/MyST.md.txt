@@ -1,0 +1,185 @@
+# MyST
+
+In this section, information for the markdown flavor MyST is noted down.
+
+MyST is a rich and extensible flavor of Markdown meant for technical documentation and publishing, see more documentation on [MyST_website].
+
+```{attention}
+2022-03: MyST delivers only a parser for Sphinx. MKDocs cannot be used with the MySt logic!
+```
+
+Here is the Link to the [MySt syntax refernce page][MySt_syntax_reference].
+Very helpful is also the [MyST cheat sheet on Jupyter Books][jupy_book_MyST_cheatsheet].
+
+The following chapters give hints for the usage of MyST.
+
+## images
+
+The normal markdown logic works:
+
+```md
+![alternative_text](./artwork/example.png)
+```
+
+Für mehr Kontrolle über das Bild die [html Logik](#html-image) verwenden.
+
+MyST provides additional logic for including images.
+See the help for [additional logic for images in MyST][MySt_images].
+
+Not documented or more detailed information is provided in the following sub-chapters.
+
+```{attention}
+Das Ziel ist eine Bild Einbindung zu verwenden die das Bild in möglichst vielen Editoren darstellt.
+
+Deshalb soll die oben dargestellte standard Markdown Syntax oder die [MyST Markdown Figures](#markdown-figures) Syntax verwendet werden.
+
+Alle weiteren Möglichkeiten sind deshalb im [Kapitel depreciated](#depreciated)
+```
+
+### html image
+
+```{note}
+Vorteil der html Logik sind:
+
+- die Größe und die Position des Bildes kann eingestellt werden.
+- das Bild sich öffnet wenn man in der Website darauf klickt.
+Dadurch sind große Bilder, die in der Website nicht zu lesen sind besser zu begutachten.
+```
+
+By adding "html_image" to myst_enable_extensions, Html image logic can be used in the markdown files.
+
+```md
+<img src="img/fun-fish.png" alt="fishy" width="200px" align="center">
+```
+
+```{note}
+The path for the image is relative to the markdown file it is imported.
+```
+
+### Markdown figures
+
+The [Markdown figures in MySt][MySt_markdown_figures] offer figure caption and target for the image.
+
+Dieser Weg soll verwendet werden wenn man eine Bild-Referenz und/oder Bild-Unterschrift braucht.
+
+```md
+:::{figure-md} fig-target
+:class: myclass
+
+![alt_text](./artwork/figure1.png)
+
+This is a caption in **Markdown**
+:::
+```
+
+````{warning}
+Das Bild wir in allen Editoren angezeigt, aber das directive wird nicht gerendert.
+Das heißt man sieht
+```md
+:::{figure-md} fig-target
+:::
+```
+um das Bild herum.
+Deshalb nur benutzen wenn es notwendig ist.
+````
+
+### clickable SVG images
+
+To click on links in SVG images the image must be opened in a separate tab in the browser.
+
+If SVG images are included the normal markdown way, the image does not open in a separate tab in the browser if you click on it. Right mouse "open in new Tab" does work, but is distracting.
+
+So include the SVG image with
+
+- the [html logic](#html-image) **if no** figure caption or target for the image is needed
+- the [markdown figure logic](#markdown-figures) with [html logic](#html-image) inside **if** figure caption or target for the image is needed
+
+### depreciated
+
+#### image directive
+
+Wie das [Standard Bild](#images), aber es kann die Position und die Größe angegeben werden.
+
+Wird in VSCode gerendert.
+
+#### figure directive
+
+Wie [image directive](#image-directive), aber es kann zusätzlich eine Bildunterschrift angegeben werden.
+
+Wird in VSCode gerendert.
+
+## directives
+
+Directives are a *block-level extension point*. So they are a block that is rendered different from the normal Markdown Syntax.
+
+See the [MyST help][MyST_directives]
+
+### include directive
+
+Include parts of a markdown file.
+
+````md
+```{include} ../README.md
+:start-after: <!-- start elevator-pitch -->
+:end-before: <!-- end elevator-pitch -->
+```
+````
+
+## roles
+
+Roles are "inline directives".
+For example, a role can be used to write an inline math formula, see [MyST_help_for_roles].
+
+## admonitions
+
+```{note}
+This is an admonition.
+Admonitions are nice to style the Website.
+```
+
+The different typs of admonitions in MySt are listed [here][jupy_book_MyST_admonition].
+
+## change data / word count / read time
+
+MyST help: [MyST_Insert__date_and_reading_time].
+
+Code to copy:
+
+```md
+{sub-ref}`today` | {sub-ref}`wordcount-words` words | {sub-ref}`wordcount-minutes` min read
+```
+
+## Use MyST with Sphinx
+
+### autodoc
+
+For sphinx autodoc documentation directives the eval-rst directive must be used as a "wrapper".
+See [this help page][MyST_use_Sphinx_ext_autodoc]
+
+````md
+```{eval-rst}
+.. autoclass:: myst_parser.mocking.MockRSTParser
+    :show-inheritance:
+    :members: parse
+```
+````
+
+### Math formulas
+
+See the [MySt help][MySt_math_shortcuts].
+
+The $$-Math-Block needs to be a paragraph. To insert an empty line before them.
+
+In our Blueprint Repositories that use Sphinx, the **myst_enable_extensions** list contains "dollarmath" and "amsmath".
+
+[MyST_directives]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html#directives-a-block-level-extension-point
+[MyST_help_for_roles]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html#roles-an-in-line-extension-point
+[MySt_images]: https://myst-parser.readthedocs.io/en/latest/syntax/optional.html?highlight=html#images
+[MyST_Insert__date_and_reading_time]: https://myst-parser.readthedocs.io/en/latest/sphinx/roles-and-directives.html?highlight=word%20count#insert-the-date-and-reading-time
+[MySt_markdown_figures]: https://myst-parser.readthedocs.io/en/latest/syntax/optional.html#markdown-figures
+[MySt_math_shortcuts]: https://myst-parser.readthedocs.io/en/latest/syntax/optional.html?highlight=math#math-shortcuts
+[MySt_syntax_reference]: https://myst-parser.readthedocs.io/en/latest/syntax/reference.html
+[MyST_use_Sphinx_ext_autodoc]: https://myst-parser.readthedocs.io/en/latest/sphinx/use.html?highlight=autodoc#use-sphinx-ext-autodoc-in-markdown-files
+[MyST_website]: https://myst-parser.readthedocs.io/en/latest/index.html
+[jupy_book_MyST_admonition]: https://jupyterbook.org/reference/cheatsheet.html#admonitions
+[jupy_book_MyST_cheatsheet]: https://jupyterbook.org/reference/cheatsheet.html#

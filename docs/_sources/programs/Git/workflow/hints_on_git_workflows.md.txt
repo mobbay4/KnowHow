@@ -1,0 +1,12 @@
+# hints on git workflows
+
+Wenn mehrere Personen auf den selben Branch arbeiten:
+Ein Merge Commit führt sets zu n-fachen Merge commits.
+Denn jeder Benutzer der pushed, erzeugt einen neunen Merge Commit.
+Dies geschieht deshlab, weil das Repository durch den vorhergehenden Merge Commit verändert wurde.
+
+## Workflow with branches
+
+Für Branch Workflow:
+
+Bevor man den Feature Branch in den Master merged, den Branch auf den aktuellen commit des masters rebasen, bevor man den feature-branch in den Master merged.

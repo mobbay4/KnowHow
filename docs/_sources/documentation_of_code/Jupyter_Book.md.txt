@@ -1,0 +1,5 @@
+# Jupyter Book
+
+To setup a Jupyter Book documentation one can use the [Jupyter-Book-Blueprint-Repository].
+
+[Jupyter-Book-Blueprint-Repository]: https://code.siemens.com/sibas-forge/sites/jupyter-book

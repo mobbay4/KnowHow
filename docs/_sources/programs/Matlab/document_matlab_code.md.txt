@@ -1,0 +1,60 @@
+# document Matlab code
+
+{sub-ref}`today` | {sub-ref}`wordcount-words` words | {sub-ref}`wordcount-minutes` min read
+
+## ways offerd by mathworks
+
+If you create a Toolbox, you can [Display Custom Documentation]. Therefor you must create html pages.
+
+Matlab offers two ways to create html-pages from your code, both documented on [Publish and Share MATLAB Code]:
+
+- Create and Share Live Scripts in the Live Editor
+- Publish MATLAB Code Files (.m). This requires some [Publishing Markup] syntax in the .m-file.
+
+## with third party tools
+
+Starting from this [matworks forum post] the possible ways of auto document Matlab code are given below.
+If there is no other information, the date when the sources are analyzed was 2021.08.05.
+
+### m2docgen
+
+[m2docgen] is a Toolbox for Matlab provided by a third-party developer.
+The principle is similar to the Sphinx autodoc in python.
+
+Advantage:
+
+- it can be used when just Matlab is installed on the PC.
+
+### Matlab report generator
+
+[matlab report generator] is a Toolbox for Matlab provided by Mathworks.
+
+It is purpose is report generation, but according to a post of the Matlab staff, it can also be used to autodoc Matlab code.
+
+### sphinxcontrib-matlabdomain
+
+[sphinxcontrib-matlabdomain] is an sphinx extension to autodoc maltab code.
+
+It works similar to the sphinx autodoc extension for python code.
+For sphinx see [sphinx documentation][md_sphinx].
+
+```{note}
+The docstring of the matlab modules / functions / objects etc. must be written in markdown.
+As style for the docstrings the [python docstring Google Style] is recomended for SMO RS LMC EN.
+```
+
+For a hint wath is all documented, you can have a look at the Test folder.
+
+Advantage:
+
+- when code siemens is used as a repository for Matlab code, the documentation can be built by GitLab-CI. Also, the documentation page can be hosted by GitLab.
+
+[md_sphinx]: ../../documentation_of_code/Sphinx/sphinx_introduction.md
+[Display Custom Documentation]: https://de.mathworks.com/help/matlab/matlab_prog/display-custom-documentation.html
+[m2docgen]: https://de.mathworks.com/matlabcentral/fileexchange/96289-m2docgen
+[matlab report generator]: https://de.mathworks.com/products/matlab-report-generator.html
+[matworks forum post]: https://de.mathworks.com/matlabcentral/answers/58438-which-tool-are-you-using-to-create-the-documentation-of-your-matlab-codes
+[Publish and Share MATLAB Code]: https://de.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html
+[Publishing Markup]: https://de.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html
+[python docstring Google Style]: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+[sphinxcontrib-matlabdomain]: https://pypi.org/project/sphinxcontrib-matlabdomain/

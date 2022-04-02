@@ -1,0 +1,47 @@
+# programing notes
+
+{sub-ref}`today` | {sub-ref}`wordcount-words` words | {sub-ref}`wordcount-minutes` min read
+
+## function handles
+
+### Parameterizing Functions (functionhandles)
+
+The source is the Matlab help page [parametrize functions].
+
+#### Parameterizing Using Anonymous Functions
+
+`Understanding of Martin Zäch: An anonymous function is a function handle that is created in a one-liner of code. This one-liner can hold the function logic as in the following example.`
+
+The following is a copy from the [parametrize functions] page.
+
+```{code-block} matlab
+b = 2;
+c = 3.5;
+cubicpoly = @(x) x^3 + b*x + c;
+x = fzero(cubicpoly,0)
+```
+
+You also can use anonymous functions to call more complicated objective functions that you define in a function file. For example, suppose you have a file named cubicpoly.m with this function definition:
+
+```{code-block} matlab
+function y = cubicpoly(x,b,c)
+y = x^3 + b*x + c;
+end
+```
+
+At the command line, define b and c, and then call fzero with an anonymous function that invokes cubicpoly:
+
+```{code-block} matlab
+b = 2;
+c = 3.5;
+x = fzero(@(x) cubicpoly(x,b,c),0)
+```
+
+Anonymous function with more than one input value remaining doe also work.
+So if the argument c from the pervious example "cubicpoly" should stay a parameter of the function, use the following:
+
+```{code-block} matlab
+anonym_func = @(x,c) cubicpoly(x,b,c)
+```
+
+[parametrize functions]: https://de.mathworks.com/help/matlab/math/parameterizing-functions.html

@@ -1,0 +1,8 @@
+# Workflow
+
+```{toctree}
+:maxdepth: 3
+:caption: Workflow
+
+hints_on_git_workflows
+```

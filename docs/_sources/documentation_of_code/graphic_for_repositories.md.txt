@@ -1,0 +1,271 @@
+# graphic for repositories
+
+This is an Instruction to generate graphics that are stored in a repo.
+
+As the artwork files are supposed to:
+
+* be scaleable
+* have small disc space (test showed: svg ist factor 15 smaller than png / when svg only includes a png ist still factor 3 smaller than the png)
+* be editable
+* are ASCI to have an effective version control
+
+The following list gives an overview over **the recommended tools. This tools each has a subchapter for additional information**.
+
+* [diagrams.net][diagram.net]
+  * usage
+    * sophisticated graphics
+  * advantages
+  * disadvantages
+* [PlantUML][plantuml]
+  * usage
+    * fast drawing
+  * advantages
+    * good look
+  * disadvantages
+* [Mermaid][mermaid]
+  * usage
+    * fast drawing
+  * advantages
+    * sphinx extension to render .mmd files
+    * renders in GitLab Markdown
+  * disadvantages
+    * no good look
+
+To check for new information visit [Railigent Documentation][railigent_docs_markdown] (Martin has access).
+
+## Speicherort von Grafiken
+
+Grafiken welche rein die Website betreffen in `docs/_static`.
+
+Grafiken die in Markdown Dateien verwendet werden im Ordner `artwork` im selben Ordner in dem Markdown Datei liegt. Das vereinfacht das Einbinden der Grafik, da der relativen Pfad gleich bleibt wenn die Markdown Datei verschoben wird.
+
+```{note}
+Die Festlegung mit dem artwork Ordner wurde getroffen, weil keine Konvention gefunden wurde.
+Wenn jemand eine Konvention kennt bitte hier eintragen.
+```
+
+## diagrams.net
+
+```{attention}
+diagrams.net was previously called draw.io.
+```
+
+[diagrams.net websit][diagram.net]
+
+Free online cool drawing software for nice-looking diagrams, [have a look](https://app.diagrams.net/).
+
+A bit like Microsoft Visio.
+
+The drawio files are really small and xml format --> perfect for versioning tools.
+
+```{note}
+For Visual Studio Code, the Extension **Draw.io Integration by Henning Dieterichs** makes a seamless working possible.
+
+***The extension is highly recommended***.
+```
+
+```{note}
+To use graphics generated with diagrams.net in markdown files, save them as .drawio.svg or .drawio.png files.
+
+To convert a .drawio to a .drawio.svg / .drawio.png:  File --> Convert
+
+So it is no longer necessary to keep a .drawio (to have the ability to improve your drawing later) and export the svg file every time you make an change.
+```
+
+### use diagrams.net graphics in WORD
+
+To use the drawio in Word, save them as .drawio.png.
+
+## PlantUML
+
+[PlantUML Website][plantuml]
+
+Empfohlen für Graphiken die den Fokus auf den Inhalt legen und die Optik zweitrangig ist.
+
+File ending`.plantuml`
+
+[Ein nützliches Tutorial][plantuml_tutorial] als getting started.
+
+```{note}
+For Visual Studio Code, the Extension **PlantUML by jebbs** makes a seamless working possible.
+
+***The extension is highly recommended***.
+```
+
+```{important}
+Die PlantUML Diagramme werden als [SVG exportiert](#exportieren-von-diagrammen). Im *artwork* Ordner liegt dann eine Datei *xy.plantuml* und eine Datei *yx.svg*. In markdown wird dann die *xy.svg* eingebunden.
+
+Dieses Vorgehen ist notwendig bis eine [Sphinx Extension zum rendern mit Server](#plantuml-in-sphinx-und-mkdocs) existiert. Dann kann das *xy.plantuml* direkt in markdown eingebunden werden.
+```
+
+### Hinweise zur Diagrammerstellung
+
+#### Vorlagen für nicht UML-Diagramme
+
+[In diesem Tutorial][plantuml_tutorial] werden weitere Diagramm-Arten die zusätzlich zu UML von PlantUML beherrscht werden dargestellt.
+
+Besonders erwähnenswert:
+
+* work breakdown structure
+  <img src="https://www.augmentedmind.de/wp-content/uploads/2020/12/example-wbs.png" alt="fishy" width="30%">
+* class diagram
+  <img src="https://www.augmentedmind.de/wp-content/uploads/2020/12/example-uml-class.png" alt="fishy" width="30%">
+
+#### Links in Diagrammen
+
+[PlantUml Dokumentation][plantuml_links_in_graphik]
+
+Link with optional label: ( A space is used as separator after the URL itself)
+
+```md
+Example: [[http://plantuml.com This label is printed]]
+```
+
+### Renderen der Diagramme
+
+Zwei Möglichkeiten:
+
+* Server
+* plantuml.jar (benötigt eine Java Engine)
+
+### Exportieren von Diagrammen
+
+Die VSCode Extension kann die Diagramme in diversen Formaten exportieren, z.B. in svg oder png.
+
+Hierzu die Command Palette öffnen und `PlantUML: Export Current Diagram` aufrufen.
+
+Die Ausgabe der Datei erfolgt in `current_folder/out/path_to_plantuml_file`.
+
+### PlantUML in markdown
+
+```{note}
+Ist für uns aktuell nicht sinnvoll bis eine [Sphinx Extension zum rendern mit Server](#plantuml-in-sphinx-und-mkdocs) existiert.
+```
+
+Mit dem plantuml code block kann ein  PlantUML Diagram direkt in eine Markdown Datei geschrieben werden.
+
+````md
+```plantuml
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
+```
+````
+
+### PlantUML in Sphinx und MKDocs
+
+```{note}
+Da unsere Websites in der GitLab Ci gerendert werden, ist es einfacher wenn zum Rendern ein Server verwendet werden kann. Dann muss das plantuml.jar und die Java Engine nicht auf dem Build-Runner installiert werden.
+
+Code.Siemens stellt einen Server zum rendern bereit.
+```
+
+Sphinx hat Extension die PlantUML mit jar. rendert. Ein [Feature Request][sphinx_contrib_plantuml_server] für rendern mit  Server existiert bereits. Zu dem existiert eine [Fork][sphinx_contrib_plantuml_server_fork] mit proof of concept. Die Extension  muss regelmäßig geprüft werden, ob der Fork zurück gespielt wurde.
+
+MKDocs hat schon eine [Extension die PlantUML][sphinx_contrib_plantuml] rendert. Siehe hierzu Railigent Dokumention (Martin hat Zugriff). Ins mkdocs.yml muss folder Code:
+
+```yaml
+ -plantuml_markdown:
+            server:https://code.siemens.com/api/plantuml/
+            format:png
+```
+
+## Mermaid
+
+Empfohlen für Graphiken die den Fokus auf den Inhalt legen und die Optik zweitrangig ist.
+
+[Mermaid Website][mermaid]. Dort sind in der Navigationsspalte links alle Diagrammtypen aufgeführt.
+[MySt: Benutzen von Mermaid][mermaid_myst].
+
+File ending: `.mmd`
+
+Zum ausprobieren Mermaid und testen von Grafiken den [Mermaid Live Editor][mermaid_liveEditor] verwenden.
+
+```{note}
+For Visual Studio Code, the Extension
+
+- **Markdown Preview Mermaid Support by Matt Bierner**
+- **Mermaid Editor by Mermaid Editor** (to show .mmd files and export the Grafik)
+
+make a seamless working possible.
+
+***The extensions are highly recommended***.
+```
+
+```{tip}
+Vorteile gegenüber PlantUML:
+
+- Andere Diagramme wie Pie, Gant sind möglich
+- Es gibt eine [Sphinx Extension][mermaid_sphinx_contrib]. **Rendern in CI ist deshalb ohne Aufwand möglich**.
+```
+
+### Mermaid in Markdown
+
+Mit dem mermaid code block kann ein  Mermaid Diagram direkt in eine Markdown Datei geschrieben werden.
+
+```{note}
+Bei größeren Diagrammen wird dies schnell unübersichtlich.
+```
+
+````md
+```{mermaid}
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+````
+
+Ergibt die Grafik:
+
+```{mermaid}
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+### Einbinden von Mermaid-Dateien
+
+Funktioniert in MySt folgendermaßen:
+
+````md
+```{eval-rst}
+.. mermaid:: ./artwork/mermaid_example.mmd
+```
+````
+
+Ergibt die Grafik:
+
+```{eval-rst}
+.. mermaid:: ./artwork/mermaid_example.mmd
+```
+
+## Powerpoint
+
+```{warning}
+As PowerPoint can not easily be version controlled, it is not used for graphics in repositories.
+```
+
+If you want to use a graphic generated in Powerpoint in a repository, export the graphic as svg by the PowerPoint "export as graphic".
+
+The svg-file then can be version controlled. Any further changes must be can be done in an svg-editor.
+
+[diagram.net]: https://www.diagrams.net/
+[mermaid]: https://mermaid-js.github.io/mermaid/#/
+[mermaid_liveEditor]: https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNpt0M2qAjEMBeBXidk68wJdKILC1a3bbkJ7dMrtj9YWEfHd7YzjzqwC-U4gebJJFqz4hmtFNNg6OWcJOlKrjXcG_Wq1PKQhKvqD94nGvqMh3Uky6JHq-if-MCNxJDRAMgXMdJz1jfZTpi12n3RH-ykx6RZb_OZ7OgGezhlSZvIt7jggB3G23fQcZ5rLgADNqrVW8r9mHV_N1YuVgp11JWVWJ_E3dCy1pOMjGlYlV3zR_JRZvd5_C2Gl
+[mermaid_myst]: https://myst-parser.readthedocs.io/en/latest/sphinx/intro.html?highlight=mermaid#install-a-new-sphinx-extension-and-use-its-functionality
+[mermaid_sphinx_contrib]: https://github.com/mgaitan/sphinxcontrib-mermaid
+[plantuml]: https://plantuml.com/de/
+[plantuml_links_in_graphik]: https://plantuml.com/de/link
+[plantuml_tutorial]: https://www.augmentedmind.de/2021/01/03/plantuml-tutorial-diagrams-as-code/
+[railigent_docs_markdown]: https://railigent.code.siemens.io/docs/development/docs/markdown.html
+[sphinx_contrib_plantuml]: https://github.com/sphinx-contrib/plantuml#readme
+[sphinx_contrib_plantuml_server]: https://github.com/sphinx-contrib/plantuml/issues/21
+[sphinx_contrib_plantuml_server_fork]: https://github.com/tomghyselinck/sphinxcontrib-plantuml/tree/feature-plantuml-server

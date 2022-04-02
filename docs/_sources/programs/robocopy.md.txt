@@ -1,0 +1,76 @@
+# Robocopy
+
+## robocopy or Xcopy
+
+In this [Stackoverfolw discussion][sof_robo_or_xcopy] it is stated, that Robocopy replaces XCopy in the newer versions of windows.
+
+So in new scripts i only use Robocopy.
+
+## use Robocopy
+
+### copy a single file
+
+```PowerShell
+robocopy `<source>` `<destination>` [`<file>`[ ...]]
+```
+
+Be carefull with options, some options like /E make robocopy copy all folders between the directory, even if the `<file>` is given.
+
+### mirror a directory
+
+```PowerShell
+robocopy `<source>` `<destination>` /mir
+```
+
+## help for Robocopy
+
+[Microsoft Help][ms_documentation]
+
+## List of Paramerters used
+
+- `/L`  List only - don't copy, timestamp or delete any files. This option is used for logging purposes only; for a dry-run.
+- `/S` — Copy subdirectories, but not empty ones.
+- `/E` — Copy Subdirectories, including empty ones. **Wenn der /E Parameter gesetzt ist werden alle Unterordner kopiert, auch wenn nur nach einem Dateinamen gefiltert wird**.
+- `/mir` — Spiegelt eine Verzeichnisstruktur (entspricht /e plus /purge). Wenn Sie diese Option mit der Option /e und einem Zielverzeichnis verwenden, werden die Sicherheitseinstellungen des Zielverzeichnisses überschrieben.
+- `/Z` — Copy files in restartable mode.
+- `/ZB` — Uses restartable mode. If access is denied, use backup mode.
+- `/R:5` — Retry 5 times (you can specify a different number, the default is 1 million).
+- `/W:5` — Wait 5 seconds before retrying (you can specify a different number, the default is 30 seconds).
+- `/TBD` — Wait for share names To Be Defined (retry error 67).
+- `/NP` — No Progress - don't display percentage copied.
+- `/V` — Produce verbose output, showing skipped files.
+- `/MT:16` — Do multithreaded copies with n threads (default is 8). So you can copy multiple files simultaneously, better utilizing the bandwidth and significantly speeding up the process. The tool supports "1" to "128" threads. The only caveat is that more processing power and bandwidth will be used when using higher numbers. If you have an older processor and an unreliable network connection, it could cause issues. As such, make sure to test the command before executing the command with a high number of threads.
+- `/LOG:E:\Diff.txt` — spezify a log file
+
+  ```{attention}
+  Das Log-File muss in dem Laufwerk angegeben werden in dem die PowerShell gerade operiert.
+  ```
+
+## delete files with Robocopy
+
+[information from][delete_wih_robocopy]
+
+The trick is to create an empty folder and use the /MIR flag to mirror the empty folder to the folder your want to delete.
+
+The steps to delete a folder using robocopy:
+
+- Open a PowerShell **as administrator**.
+- Change directory to where the folder you want to delete is.
+- Type the following commands (Replace the `folder_to_delete` with the folder name you want to delete)
+
+```PowerShell
+$folder_name = "folder_to_delete"
+mkdir empty
+robocopy empty $folder_name /mir > log_delete.txt
+rmdir empty
+rmdir $folder_name
+rm log_delete.txt
+```
+
+```{tip}
+This does also work for files with **long file name**.
+```
+
+[sof_robo_or_xcopy]: https://stackoverflow.com/questions/24121046/difference-between-xcopy-and-robocopy
+[ms_documentation]: https://docs.microsoft.com/de-de/windows-server/administration/windows-commands/robocopy
+[delete_wih_robocopy]: http://www.kombitz.com/2019/09/20/best-command-line-tool-to-delete-large-folder-on-windows/

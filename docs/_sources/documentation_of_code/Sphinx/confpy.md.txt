@@ -1,0 +1,132 @@
+# conf.py
+
+The `conf.py` file manages the general settings for [Sphinx]. So you configure basic information like:
+
+- project name
+- author
+- package version
+
+But also functional requirements like the `extensions` you use for the documentation.
+
+An example for such a `conf.py` file could look like:
+
+```{code-block} python
+
+# -*- coding: utf-8 -*-
+#
+# Configuration file for the Sphinx documentation builder.
+#
+# This file only contains a selection of the most common options. For a full
+# list sees the documentation:
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+# -- Path setup --------------------------------------------------------------
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+import os
+import sys
+sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../python_package_name'))
+# -- Project information -----------------------------------------------------
+#
+project = 'Blueprint Python Package'
+copyright = '2020-2022, Siemens Mobility GmbH'
+author = 'Martin Zäch'
+version = '0.1'
+release = '0.1.0a0'
+
+# -- General configuration ---------------------------------------------------
+
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+    #'matplotlib.sphinxext.plot_directive', # uncomment to include plots in your documentation
+    'sphinx.ext.doctest',
+    'sphinx_copybutton', # to add a copybutton to code blocks
+    'myst_parser'# to include .md files in documentation
+]
+master_doc = 'index'
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown'
+}
+templates_path = ['_templates']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
+
+# -- Options for HTML output -------------------------------------------------
+
+# matplotlib plot directive settings
+plot_include_source = True
+plot_formats = [("png", 90)]
+plot_html_show_formats = False
+plot_html_show_source_link = False
+
+#plot_pre_code = """import numpy as np"""# Here you can define what is executed before matplotlib directive
+
+html_theme = "furo"
+html_static_path = ["_static"]
+html_title = 'Blueprint Python Package'
+html_logo = './_static/images/siemens-logo-claim-petrol-rgb.png'
+html_favicon = './_static/images/favicon_internet.ico'
+html_show_sourcelink = True
+html_baseurl = 'https://smo-rs-lmc-en-lm-sc.code.siemens.io/opd/opd-da-prep-data-preperation/'
+show_navbar_depth = 3
+
+# -- Extension configuration -------------------------------------------------
+
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
+napoleon_include_init_with_doc = False
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = False
+napoleon_use_admonition_for_notes = False
+napoleon_use_admonition_for_references = False
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
+napoleon_preprocess_types = False
+napoleon_type_aliases = None
+napoleon_attr_annotations = True
+
+# -- Options for AutoDoc -----------------------------------------------------
+
+autodoc_member_order = 'bysource'
+autodoc_inherit_docstrings = False
+
+# -- Options for ExtLinks ----------------------------------------------------
+
+extlinks = {
+    'issue': (
+    'https://code.siemens.com/smo-rs-lmc-en-lm-sc/blueprints/sphinx_python_package/-/issues/%s', 'issue ')
+}
+
+# -- Options for InterSphinx -------------------------------------------------
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3.8', None)
+}
+
+
+```
+
+## extensions
+
+To add an extension to your [Sphinx] documentation, you must differentiate between native Sphinx packages and external ones. One can use native [Sphinx] packages by adding their name to the `extensions` list in the `conf.py` file. So a native package is the `sphinx.ext.autodoc`. External [Sphinx] packages must be added to the `extensions` list in the `conf.py` file and additionally installed via [Pip]. An example of an external package is the [MySt] package.
+
+% External links
+[Pip]: <https://pypi.org/project/pip/>
+[MySt]: <https://myst-parser.readthedocs.io/en/latest/sphinx/intro.html>
+[Sphinx]: <https://www.sphinx-doc.org/en/master/>
