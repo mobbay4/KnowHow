@@ -1,0 +1,84 @@
+site_name: WG Know How
+site_url: 
+site_author: Florian Schweiger
+
+repo_name: KnowHow
+repo_url: https://github.com/mobbay4/KnowHow
+edit_uri: edit/master/docs
+
+use_directory_urls: false
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: light-blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: light-blue
+      toggle:Single-Page Chapter: single-page-chapter.md
+    - Mulit-Page Chapter:
+      - multi-page-chapter/index.md
+      - Sub-Chapter Single-Page : multi-page-chapter/sub-chapter-single-page.md
+      - Sub-Chapter Multi-Page:
+        - sub-chapter-multi-page/index.md
+        - Sub-Chapter Page 1: sub-chapter-multi-page/sub-chapter-multi-page-1.md
+        - Sub-Chapter Page 2: sub-chapter-multi-page/sub-chapter-multi-page-2.md
+        icon: material/toggle-switch
+        name: Switch to light mode
+  font:
+    text: Open Sans
+    code: Source Code Pro
+  language: en
+  icon:
+    logo: fontawesome/solid/book
+    repo: fontawesome/brands/gitlab
+  favicon: images/favicon_internet.ico
+  features:
+    - navigation.instant
+    # - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    # - navigation.expand
+    - toc.integrate
+
+markdown_extensions:
+  - toc:
+      permalink: false
+      toc_depth: 3
+  - admonition
+  - attr_list
+  - meta
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - pymdownx.highlight
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Foreword: foreword.md
+  - Contents:
+    - Unit Testing: UNIT_Tests/python.md
+  - References:
+    - Annex: 
+      - annex/how_to_contribute.md
+    
