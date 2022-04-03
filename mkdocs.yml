@@ -79,6 +79,7 @@ nav:
   - Contents:
     - Programming:
       - Git:
+        - General Git Hints: Programming/Git/git_general.md
         - Git Hooks: Programming/Git/git_hooks.md
       - Python:
         - Poetry: Programming/Python/poetry.md
