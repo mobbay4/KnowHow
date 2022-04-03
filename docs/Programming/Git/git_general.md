@@ -97,5 +97,10 @@ git reset
 One can secure his SSH keys and configure an authentication agent so that you will not have to reenter your passphrase every time you use your SSH keys.
 This [tutorial explains how to configure the SSH-Agent].
 
+## Commit Messages
+
+There are several ways to write comprehencive commit messages. This [nice block article][Commit Message Block Article] gives some very introductive tipps what makes a commit message readable. Also it informs one on how to structure it that GitLab can present it correctly.
+
+[Commit Message Block Article]: https://chris.beams.io/posts/git-commit/
 [tutorial explains how to configure the SSH-Agent]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows
 [Undo current changes]: https://docs.gitlab.com/ee/topics/git/numerous_undo_possibilities_in_git/
