@@ -10,19 +10,19 @@
         <meta name="author" content="Florian Schweiger">
       
       
-      <link rel="icon" href="../images/favicon_internet.ico">
+      <link rel="icon" href="../../images/favicon_internet.ico">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
-        <title>Unit Testing - WG Know How</title>
+        <title>General hints on Git - WG Know How</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.644de097.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -37,7 +37,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unit-tests-in-python" class="md-skip">
+        <a href="#general-hints-on-git" class="md-skip">
           Skip to content
         </a>
       
@@ -79,7 +79,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="WG Know How" class="md-header__button md-logo" aria-label="WG Know How" data-md-component="logo">
+    <a href="../../index.html" title="WG Know How" class="md-header__button md-logo" aria-label="WG Know How" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M448 336V48c0-26.51-21.5-48-48-48H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1 0-11.72-6.607-21.52-16-27.1v-81.36c9.8-9.64 16-22.24 16-36.44zM143.1 128h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zm0 64h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zM384 448H96c-17.67 0-32-14.33-32-32s14.33-32 32-32h288v64z"/></svg>
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Unit Testing
+              General hints on Git
             
           </span>
         </div>
@@ -202,7 +202,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="WG Know How" class="md-nav__button md-logo" aria-label="WG Know How" data-md-component="logo">
+    <a href="../../index.html" title="WG Know How" class="md-nav__button md-logo" aria-label="WG Know How" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M448 336V48c0-26.51-21.5-48-48-48H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1 0-11.72-6.607-21.52-16-27.1v-81.36c9.8-9.64 16-22.24 16-36.44zM143.1 128h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zm0 64h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zM384 448H96c-17.67 0-32-14.33-32-32s14.33-32 32-32h288v64z"/></svg>
@@ -233,7 +233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         Foreword
       </a>
     </li>
@@ -246,16 +246,14 @@
 
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -280,114 +278,154 @@
               
   
   
+  
     
-  
-  
-    <li class="md-nav__item md-nav__item--active">
+    <li class="md-nav__item md-nav__item--nested">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
       
       
         
+          
+        
+          
+        
+          
+        
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Unit Testing
+        <label class="md-nav__link" for="__nav_2_1">
+          Programming
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="python.html" class="md-nav__link md-nav__link--active">
-        Unit Testing
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+      <nav class="md-nav" aria-label="Programming" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Programming
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
   
   
   
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <li class="md-nav__item md-nav__item--nested">
       
-        <li class="md-nav__item">
-  <a href="#test-functions" class="md-nav__link">
-    test-functions
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#call-of-tests" class="md-nav__link">
-    Call of tests
-  </a>
-  
-</li>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
       
-        <li class="md-nav__item">
-  <a href="#test-results" class="md-nav__link">
-    Test results
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#how-to-organize-the-expected-values-of-the-tests" class="md-nav__link">
-    How to organize the expected values of the tests
-  </a>
-  
-    <nav class="md-nav" aria-label="How to organize the expected values of the tests">
-      <ul class="md-nav__list">
+      
         
-          <li class="md-nav__item">
-  <a href="#parameterization-of-test-functions" class="md-nav__link">
-    Parameterization of test-functions
-  </a>
-  
-</li>
+          
         
-          <li class="md-nav__item">
-  <a href="#usage-of-test-classes" class="md-nav__link">
-    Usage of test-classes
-  </a>
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          Git
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Git" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
   
-</li>
+  
+  
+    <li class="md-nav__item">
+      <a href="git_hooks.html" class="md-nav__link">
+        Git Hooks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_2" type="checkbox" id="__nav_2_1_2" >
+      
+      
+      
         
-      </ul>
-    </nav>
-  
-</li>
+          
+        
       
-        <li class="md-nav__item">
-  <a href="#test-types" class="md-nav__link">
-    Test types
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#testing-in-python" class="md-nav__link">
-    Testing in Python
-  </a>
-  
-</li>
+        <label class="md-nav__link" for="__nav_2_1_2">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
-        <li class="md-nav__item">
-  <a href="#test-coverage" class="md-nav__link">
-    Test coverage
-  </a>
+      <nav class="md-nav" aria-label="Python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
   
-</li>
-      
-    </ul>
   
-</nav>
-      
+  
+    <li class="md-nav__item">
+      <a href="../Python/poetry.html" class="md-nav__link">
+        Poetry
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIT_Tests/python.html" class="md-nav__link">
+        Unit Testing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -471,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annex/how_to_contribute.html" class="md-nav__link">
+      <a href="../../annex/how_to_contribute.html" class="md-nav__link">
         How to Contribute
       </a>
     </li>
@@ -485,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../annex/getting_started.html" class="md-nav__link">
+      <a href="../../annex/getting_started.html" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -518,50 +556,65 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/mobbay4/KnowHow/edit/master/docs/UNIT_Tests/python.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/mobbay4/KnowHow/edit/master/docs/Programming/Git/git_general.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="unit-tests-in-python">UNIT tests in Python</h1>
-<p>First of all, there is a folder <code>test</code> in parallel to the source-code folder of the Python package, containing all testing files. In this folder, we add a <code>README.md</code> file explaining how the tests are structured.</p>
-<h2 id="test-functions">test-functions</h2>
-<ul>
-<li><code>AssertEqual-function</code>: compare a return value of a function/class with a expected value</li>
-<li>If we test only on exceptions: <code>Assert(True)</code></li>
-<li>If we want to test on a special exception, we use assertions about expected exceptions</li>
-<li>`setup function: To prepare for the tests, for example, provide access to a database. The setup function runs at first.</li>
-<li><code>TearDown-function</code>: Diminish the test resources after the tests, for example, to cut the connection to a database.</li>
-</ul>
-<h2 id="call-of-tests">Call of tests</h2>
-<p>We call tests via the command line. Thereby we can select which tests should run and also skip tests. Later is helpful if the package is not developed enough to execute a particular test.</p>
-<h2 id="test-results">Test results</h2>
-<p>The results are presented in a <code>JUnitXML</code>-file, which can be opened in a browser window. Thereof we get a graphical response about the test results.</p>
-<h2 id="how-to-organize-the-expected-values-of-the-tests">How to organize the expected values of the tests</h2>
-<h3 id="parameterization-of-test-functions">Parameterization of test-functions</h3>
-<p>For n test values (e.g., by a limiter), it makes sense to parameterize the test functions. The test cases can be created in the test modules or separate parameter files. Parameterization has the advantage that it is immediately visible which test has failed in case of an error.</p>
-<h3 id="usage-of-test-classes">Usage of test-classes</h3>
-<p>Test classes are mainly for test organization. Therefore one understands, which test functions are connected since they are collected in one class.</p>
-<h2 id="test-types">Test types</h2>
-<ul>
-<li>Limit-tests: Execute value below lower border and above upper border as test</li>
-<li>sign-test</li>
-</ul>
-<h2 id="testing-in-python">Testing in Python</h2>
-<p>The absolute standard package is the <code>Pytest</code>-package. <code>Pytest</code> contains the following components:</p>
-<ul>
-<li>there is a <strong>test folder</strong></li>
-<li>there is a <strong>test runner</strong></li>
-<li><code>Conftest.py</code> configures the tests</li>
-<li><strong>Pytest fixture (deocrator)</strong>: Test preparation and clean up for code</li>
-<li><strong>Test-files</strong>: module names all have the prefix <code>test</code> in their filenames</li>
-<li><strong>Test-functions</strong>: Function-names also have the prefix <code>test</code>. The rest of the name should be as descriptive as possible.</li>
-<li>tests can be parameterized</li>
-</ul>
-<h2 id="test-coverage">Test coverage</h2>
-<p>One can use tools like <a href="https://docs.codecov.com/docs">Codecov</a> to measure the test-coverage of your code. It runs through all your source code files and checks which lines are covered by the tests you have written so far. Thereoff you can detect potential weaknesses in your code.</p>
-<p>To learn more one can have a look at this more <a href="https://www.earthdatascience.org/blog/unit-testing-linting-ci-python/">general but excelent tutorial</a></p>
+<h1 id="general-hints-on-git">General hints on Git</h1>
+<p>In this section, useful git commands and workflows should be collected.</p>
+<h2 id="commands">Commands</h2>
+<h3 id="branches">Branches</h3>
+<p>Show branches:</p>
+<div class="highlight"><pre><span></span><code>git branch <span class="c1"># to show local branches</span>
+git branch <span class="c1"># to show local and remote branches</span>
+</code></pre></div>
+<p>Create branches:</p>
+<div class="highlight"><pre><span></span><code>git checkout -b &lt;branch&gt; <span class="c1"># creates and switches to &lt;branch&gt;</span>
+</code></pre></div>
+<p>To make it available remotely:</p>
+<div class="highlight"><pre><span></span><code>git push --set-upstream origin &lt;branch&gt;
+</code></pre></div>
+<p><strong>local:</strong></p>
+<div class="highlight"><pre><span></span><code>git branch -d &lt;branch&gt;
+</code></pre></div>
+<p>The '-d' option stands for '-delete', and it can be used whenever the branch you want to clean up is completely merged with your upstream branch.</p>
+<div class="highlight"><pre><span></span><code>git branch -D &lt;branch&gt;
+</code></pre></div>
+<p>In this case, the '-D' option stands for '-delete -force',  and it is used when your local branches are not merged with your remote-tracking branches.</p>
+<p><strong>remote</strong>:</p>
+<p>remote branches</p>
+<div class="highlight"><pre><span></span><code>git push &lt;remote&gt; --delete &lt;branch&gt;
+</code></pre></div>
+<h3 id="merge">Merge</h3>
+<p>To merge another branch in your active branch:</p>
+<div class="highlight"><pre><span></span><code>git merge &lt;branch&gt;
+</code></pre></div>
+<p>Not auto-mergeable files have to be resolved manually.</p>
+<p>To get a merge preview, one can use:</p>
+<div class="highlight"><pre><span></span><code>git diff &lt;source_branch&gt; &lt;target_branch&gt;
+</code></pre></div>
+<h3 id="log">log</h3>
+<p>To study the repository history:</p>
+<div class="highlight"><pre><span></span><code>git log
+</code></pre></div>
+<p>There are several parameters one can adjust:</p>
+<div class="highlight"><pre><span></span><code>--author<span class="o">=</span>boy
+--graph --oneline --decorate --all <span class="c1"># shows reduced git commit history</span>
+</code></pre></div>
+<h3 id="undo-current-chagnes-reference">Undo current chagnes (<a href="https://docs.gitlab.com/ee/topics/git/numerous_undo_possibilities_in_git/">Reference</a>)</h3>
+<p>This discards local changes to all files permanently:</p>
+<div class="highlight"><pre><span></span><code>Git reset --hard
+</code></pre></div>
+<p>Unstaged but keep changes</p>
+<div class="highlight"><pre><span></span><code>git reset
+</code></pre></div>
+<h2 id="ssh-agent">SSH Agent</h2>
+<p>One can secure his SSH keys and configure an authentication agent so that you will not have to reenter your passphrase every time you use your SSH keys.
+This <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows">tutorial explains how to configure the SSH-Agent</a>.</p>
+<h2 id="commit-messages">Commit Messages</h2>
+<p>There are several ways to write comprehencive commit messages. This <a href="https://chris.beams.io/posts/git-commit/">nice block article</a> gives some very introductive tipps what makes a commit message readable. Also it informs one on how to structure it that GitLab can present it correctly.</p>
 
               
             </article>
@@ -576,41 +629,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Foreword" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Foreword
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../annex/how_to_contribute.html" class="md-footer__link md-footer__link--next" aria-label="Next: How to Contribute" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              How to Contribute
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -632,10 +650,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "navigation.indexes", "toc.integrate"], "search": "../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "navigation.indexes", "toc.integrate"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.c44cc438.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>

@@ -10,19 +10,19 @@
         <meta name="author" content="Florian Schweiger">
       
       
-      <link rel="icon" href="images/favicon_internet.ico">
+      <link rel="icon" href="../../images/favicon_internet.ico">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
-        <title>WG Know How</title>
+        <title>Unit Testing - WG Know How</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.644de097.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -37,7 +37,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#foreword" class="md-skip">
+        <a href="#unit-tests-in-python" class="md-skip">
           Skip to content
         </a>
       
@@ -79,7 +79,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="WG Know How" class="md-header__button md-logo" aria-label="WG Know How" data-md-component="logo">
+    <a href="../../index.html" title="WG Know How" class="md-header__button md-logo" aria-label="WG Know How" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M448 336V48c0-26.51-21.5-48-48-48H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1 0-11.72-6.607-21.52-16-27.1v-81.36c9.8-9.64 16-22.24 16-36.44zM143.1 128h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zm0 64h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zM384 448H96c-17.67 0-32-14.33-32-32s14.33-32 32-32h288v64z"/></svg>
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Foreword
+              Unit Testing
             
           </span>
         </div>
@@ -202,7 +202,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="WG Know How" class="md-nav__button md-logo" aria-label="WG Know How" data-md-component="logo">
+    <a href="../../index.html" title="WG Know How" class="md-nav__button md-logo" aria-label="WG Know How" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M448 336V48c0-26.51-21.5-48-48-48H96C42.98 0 0 42.98 0 96v320c0 53.02 42.98 96 96 96h320c17.67 0 32-14.33 32-31.1 0-11.72-6.607-21.52-16-27.1v-81.36c9.8-9.64 16-22.24 16-36.44zM143.1 128h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zm0 64h192c9.7 0 16.9 7.2 16.9 16s-7.2 16-16 16H143.1c-7.9 0-15.1-7.2-15.1-16s7.2-16 15.1-16zM384 448H96c-17.67 0-32-14.33-32-32s14.33-32 32-32h288v64z"/></svg>
@@ -231,21 +231,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
         Foreword
       </a>
-      
     </li>
   
 
@@ -256,14 +246,16 @@
 
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -288,12 +280,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       
       
@@ -354,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Programming/Git/git_hooks.html" class="md-nav__link">
+      <a href="../Git/git_hooks.html" class="md-nav__link">
         Git Hooks
       </a>
     </li>
@@ -405,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Programming/Python/poetry.html" class="md-nav__link">
+      <a href="../Python/poetry.html" class="md-nav__link">
         Poetry
       </a>
     </li>
@@ -424,11 +418,114 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="Programming/UNIT_Tests/python.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Unit Testing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="python.html" class="md-nav__link md-nav__link--active">
         Unit Testing
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#test-functions" class="md-nav__link">
+    test-functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-of-tests" class="md-nav__link">
+    Call of tests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-results" class="md-nav__link">
+    Test results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-organize-the-expected-values-of-the-tests" class="md-nav__link">
+    How to organize the expected values of the tests
+  </a>
+  
+    <nav class="md-nav" aria-label="How to organize the expected values of the tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameterization-of-test-functions" class="md-nav__link">
+    Parameterization of test-functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-of-test-classes" class="md-nav__link">
+    Usage of test-classes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-types" class="md-nav__link">
+    Test types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-in-python" class="md-nav__link">
+    Testing in Python
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    Test coverage
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -519,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="annex/how_to_contribute.html" class="md-nav__link">
+      <a href="../../annex/how_to_contribute.html" class="md-nav__link">
         How to Contribute
       </a>
     </li>
@@ -533,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="annex/getting_started.html" class="md-nav__link">
+      <a href="../../annex/getting_started.html" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -566,14 +663,50 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/mobbay4/KnowHow/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/mobbay4/KnowHow/edit/master/docs/Programming/UNIT_Tests/python.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="foreword">Foreword</h1>
-<p>This is a Repository for knowledge sharing. The Idea is to document solutions for Problems one had to solve.</p>
+<h1 id="unit-tests-in-python">UNIT tests in Python</h1>
+<p>First of all, there is a folder <code>test</code> in parallel to the source-code folder of the Python package, containing all testing files. In this folder, we add a <code>README.md</code> file explaining how the tests are structured.</p>
+<h2 id="test-functions">test-functions</h2>
+<ul>
+<li><code>AssertEqual-function</code>: compare a return value of a function/class with a expected value</li>
+<li>If we test only on exceptions: <code>Assert(True)</code></li>
+<li>If we want to test on a special exception, we use assertions about expected exceptions</li>
+<li>`setup function: To prepare for the tests, for example, provide access to a database. The setup function runs at first.</li>
+<li><code>TearDown-function</code>: Diminish the test resources after the tests, for example, to cut the connection to a database.</li>
+</ul>
+<h2 id="call-of-tests">Call of tests</h2>
+<p>We call tests via the command line. Thereby we can select which tests should run and also skip tests. Later is helpful if the package is not developed enough to execute a particular test.</p>
+<h2 id="test-results">Test results</h2>
+<p>The results are presented in a <code>JUnitXML</code>-file, which can be opened in a browser window. Thereof we get a graphical response about the test results.</p>
+<h2 id="how-to-organize-the-expected-values-of-the-tests">How to organize the expected values of the tests</h2>
+<h3 id="parameterization-of-test-functions">Parameterization of test-functions</h3>
+<p>For n test values (e.g., by a limiter), it makes sense to parameterize the test functions. The test cases can be created in the test modules or separate parameter files. Parameterization has the advantage that it is immediately visible which test has failed in case of an error.</p>
+<h3 id="usage-of-test-classes">Usage of test-classes</h3>
+<p>Test classes are mainly for test organization. Therefore one understands, which test functions are connected since they are collected in one class.</p>
+<h2 id="test-types">Test types</h2>
+<ul>
+<li>Limit-tests: Execute value below lower border and above upper border as test</li>
+<li>sign-test</li>
+</ul>
+<h2 id="testing-in-python">Testing in Python</h2>
+<p>The absolute standard package is the <code>Pytest</code>-package. <code>Pytest</code> contains the following components:</p>
+<ul>
+<li>there is a <strong>test folder</strong></li>
+<li>there is a <strong>test runner</strong></li>
+<li><code>Conftest.py</code> configures the tests</li>
+<li><strong>Pytest fixture (deocrator)</strong>: Test preparation and clean up for code</li>
+<li><strong>Test-files</strong>: module names all have the prefix <code>test</code> in their filenames</li>
+<li><strong>Test-functions</strong>: Function-names also have the prefix <code>test</code>. The rest of the name should be as descriptive as possible.</li>
+<li>tests can be parameterized</li>
+</ul>
+<h2 id="test-coverage">Test coverage</h2>
+<p>One can use tools like <a href="https://docs.codecov.com/docs">Codecov</a> to measure the test-coverage of your code. It runs through all your source code files and checks which lines are covered by the tests you have written so far. Thereoff you can detect potential weaknesses in your code.</p>
+<p>To learn more one can have a look at this more <a href="https://www.earthdatascience.org/blog/unit-testing-linting-ci-python/">general but excelent tutorial</a></p>
 
               
             </article>
@@ -591,15 +724,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../Python/poetry.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Poetry" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Poetry
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="Programming/Git/git_hooks.html" class="md-footer__link md-footer__link--next" aria-label="Next: Git Hooks" rel="next">
+        <a href="../../annex/how_to_contribute.html" class="md-footer__link md-footer__link--next" aria-label="Next: How to Contribute" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Git Hooks
+              How to Contribute
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -629,10 +777,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.sections", "navigation.top", "navigation.indexes", "toc.integrate"], "search": "assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "navigation.indexes", "toc.integrate"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.c44cc438.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
       
     
   </body>
