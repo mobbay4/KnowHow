@@ -77,7 +77,12 @@ markdown_extensions:
 nav:
   - Foreword: index.md
   - Contents:
-    - Unit Testing: UNIT_Tests/python.md
+    - Programming:
+      - Git:
+        - Git Hooks: Programming/Git/git_hooks.md
+      - Python:
+        - Poetry: Programming/Python/poetry.md
+      - Unit Testing: Programming/UNIT_Tests/python.md
   - References:
     - Annex:
       - annex/how_to_contribute.md
